@@ -1,0 +1,50 @@
+Package: motrpacWAT
+Type: Package
+Title: Helper Functions for the motrpacWATData Package
+Version: 0.0.0.9000
+Authors@R: 
+    c(
+    person(given = "Tyler", family = "Sagendorf", 
+           email = "tyler.sagendorf@pnnl.gov",
+           comment = c(ORCID = "0000-0003-1552-4870"),
+           role = c("aut", "cre")),
+    person(given = "Zhenxin", family = "Hou",
+           comment = c(ORCID = "0000-0002-1301-0799",
+                       "Provided WGCNA-related code."),
+           role = "ctb"),
+    person(given = "Vladislav", family = "Petyuk",
+           comment = c(ORCID = "0000-0003-4076-151X"),
+           role = "ctb")
+    )
+Description: A collection of functions for the analysis and visualization of  
+    the MoTrPAC PASS1B training study rat white adipose tissue (WAT) data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: 
+    R (>= 3.5.0),
+    MSnbase
+Imports: 
+    circlize,
+    ComplexHeatmap (>= 2.12.0),
+    cowplot,
+    data.table,
+    dynamicTreeCut,
+    edgeR,
+    emmeans,
+    fgsea,
+    ggbeeswarm,
+    ggplot2,
+    graphics,
+    grDevices,
+    latex2exp,
+    limma,
+    msigdbr (>= 7.5.1),
+    ontologyIndex,
+    patchwork,
+    scales,
+    statmod,
+    stats,
+    tibble,
+    utils,
+    WGCNA
+RoxygenNote: 7.2.3
