@@ -1,7 +1,7 @@
 Package: motrpacWAT
 Type: Package
 Title: Helper Functions for the motrpacWATData Package
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(
     person(given = "Tyler", family = "Sagendorf", 
@@ -30,7 +30,6 @@ Imports:
     data.table,
     dynamicTreeCut,
     edgeR,
-    emmeans,
     fgsea,
     ggbeeswarm,
     ggplot2,
