@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/index.html</loc>
   </url>
   <url>
-    <loc>/reference/enrichmat.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/enrichmat.html</loc>
   </url>
   <url>
-    <loc>/reference/fgsea2.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/fgsea2.html</loc>
   </url>
   <url>
-    <loc>/reference/fora2.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/fora2.html</loc>
   </url>
   <url>
-    <loc>/reference/get_ranking.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/get_ranking.html</loc>
   </url>
   <url>
-    <loc>/reference/ggplotMDS.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/ggplotMDS.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/label_signif.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/label_signif.html</loc>
   </url>
   <url>
-    <loc>/reference/limma_full.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/limma_full.html</loc>
   </url>
   <url>
-    <loc>/reference/motrpacWAT-package.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/motrpacWAT-package.html</loc>
   </url>
   <url>
-    <loc>/reference/msigdbr2.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/msigdbr2.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_ORA.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/plot_ORA.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_analyte.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/plot_analyte.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_eigenfeature.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/plot_eigenfeature.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_upset.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/plot_upset.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_volcano.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/plot_volcano.html</loc>
   </url>
   <url>
-    <loc>/reference/pval_hist.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/pval_hist.html</loc>
   </url>
   <url>
-    <loc>/reference/range_extend.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/range_extend.html</loc>
   </url>
   <url>
-    <loc>/reference/run_WGCNA.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/run_WGCNA.html</loc>
   </url>
   <url>
-    <loc>/reference/theme_pub.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/theme_pub.html</loc>
   </url>
   <url>
-    <loc>/reference/update_GO_names.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/motrpacWAT/reference/update_GO_names.html</loc>
   </url>
 </urlset>
