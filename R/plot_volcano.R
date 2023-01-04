@@ -2,15 +2,15 @@
 #'
 #' @description Create a volcano plot.
 #'
-#' @param x a `matrix` or `data.frame` containing differential analysis results. Must include columns logFC, log10_pval, sign_logFC, contrast, label,
+#' @param x a \code{matrix} or \code{data.frame} containing differential
+#'   analysis results. Must include columns logFC, log10_pval, sign_logFC,
+#'   contrast, and label.
 #' @param pval_cutoff numeric; cutoff for p-values to be considered significant.
 #'   Adds a dashed horizontal line to the plot.
-#' @param scale numeric; scaling factor used when saving the plot. Default is
-#'   2.5.
 #' @param colors character; length 3 vector of significantly negative,
 #'   significantly positive, and non-significant (NS) logFC colors.
 #'
-#' @returns A `ggplot2` object.
+#' @returns A \code{ggplot2} object.
 #'
 #' @md
 #'

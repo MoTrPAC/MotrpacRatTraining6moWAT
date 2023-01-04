@@ -13,8 +13,8 @@
 #'   "scale" (default), which will compute scaled p-values or one of
 #'   \code{\link[stats]{p.adjust.methods}}.
 #' @param adjust.globally logical; should p-values from all contrasts be
-#'   adjusted together using `adjust.method`? Set to `FALSE` if the contrasts
-#'   being tested are not closely related.
+#'   adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
+#'   contrasts being tested are not closely related.
 #'
 #' @importFrom stats p.adjust p.adjust.methods
 #' @importFrom data.table setDT rbindlist setorderv `:=`
@@ -22,8 +22,6 @@
 #' @importFrom fgsea fora
 #'
 #' @export fora2
-#'
-#' @md
 #'
 #' @author Tyler Sagendorf
 

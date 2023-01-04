@@ -2,29 +2,27 @@
 #'
 #' @description Run the WGCNA pipeline used in the WAT manuscript.
 #'
-#' @param eset \code{eSet} (or most likely \code{eSet} subclass) object. The
-#'   `exprs` slot should be a matrix of log2-transformed values. Count data is
-#'   not accepted.
+#' @param object object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}}.
+#'   \code{exprs} should be a matrix of log\eqn{_2}-transformed values. Count
+#'   data is not accepted.
 #' @param power integer; optional soft power vector (length 1 or greater). If
-#'   not specified, the lowest value of 1:20 that satisfies scale-free fit R^2
-#'   at least equal to `RsquaredCut` will be used.
-#' @param RsquaredCut numeric; desired minimum scale-free fit R^2. Ignored if
-#'   `power` is provided.
+#'   not specified, the lowest value of 1:20 that satisfies scale-free fit
+#'   R\eqn{^2} at least equal to \code{RsquaredCut} will be used.
+#' @param RsquaredCut numeric; desired minimum scale-free fit R\eqn{^2}. Ignored
+#'   if \code{power} is provided.
 #' @param module_prefix character; what to append to the module numbers to
-#'   create the "moduleID" column in `fData(eset)`.
+#'   create the "moduleID" column in \code{fData(object)}.
 #' @param merge_modules logical; if not provided, user input is requested to
 #'   determine whether highly-correlated (r=0.85) modules should be combined
 #'   based on plots that the function creates. Must be provided if session is
 #'   not interactive.
 #'
-#' @returns An \code{\link[MSnbase]{MSnSet-class}} object with modified `pData`
-#'   and `fData`. The `pData` will include columns for each of the module
-#'   eigenfeatures (prefixed with "ME" and followed by a color), while the
-#'   `fData` will include columns "moduleColor" and "moduleID" that specify the
-#'   modules to which each feature belongs. Features from the "grey" module
-#'   should be ignored.
-#'
-#' @md
+#' @returns Object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}} with
+#'   modified \code{pData} and \code{fData}. The \code{pData} will include
+#'   columns for each of the module eigenfeatures (prefixed with "ME" and
+#'   followed by a color), while the \code{fData} will include columns
+#'   "moduleColor" and "moduleID" that specify the modules to which each feature
+#'   belongs. Features from the "grey" module should be ignored.
 #'
 #' @importFrom MSnbase exprs pData fData `fData<-` `pData<-` featureNames
 #' @importFrom WGCNA pickSoftThreshold adjacency TOMsimilarity labels2colors
@@ -40,8 +38,8 @@
 #' @author Tyler Sagendorf, Zhenxin Hou
 #'
 #' @references Zhang, B., & Horvath, S. (2005). A general framework for weighted
-#'   gene co-expression network analysis. *Statistical applications in genetics
-#'   and molecular biology, 4*, Article17.
+#'   gene co-expression network analysis. \emph{Statistical applications in
+#'   genetics and molecular biology, 4}, Article17.
 #'   \url{https://doi.org/10.2202/1544-6115.1128}
 #'
 #'   Langfelder P and Horvath S, WGCNA: an R package for weighted correlation
@@ -49,24 +47,25 @@
 #'   \url{https://doi.org/10.1186/1471-2105-9-559}
 #'
 #'   Peter Langfelder, Steve Horvath (2012). Fast R Functions for Robust
-#'   Correlations and Hierarchical Clustering. *Journal of Statistical Software,
-#'   46*(11), 1-17. \url{http://www.jstatsoft.org/v46/i11/}
+#'   Correlations and Hierarchical Clustering. \emph{Journal of Statistical
+#'   Software, 46}(11), 1--17. \url{http://www.jstatsoft.org/v46/i11/}
 #'
-#'   Horvath, S. (2011). Weighted Network Analysis. *Springer New York*.
+#'   Horvath, S. (2011). Weighted Network Analysis. \emph{Springer New York}.
 #'   \url{https://doi.org/10.1007/978-1-4419-8819-5}
 #'
-#'   Langfelder P, Zhang B, Horvath wcfS (2016). _dynamicTreeCut: Methods for
-#'   Detection of Clusters in Hierarchical Clustering Dendrograms_. R package
-#'   version 1.63-1, \url{https://CRAN.R-project.org/package=dynamicTreeCut}.
+#'   Langfelder P, Zhang B, Horvath wcfS (2016). \emph{dynamicTreeCut: Methods
+#'   for Detection of Clusters in Hierarchical Clustering Dendrograms}. R
+#'   package version 1.63-1,
+#'   \url{https://CRAN.R-project.org/package=dynamicTreeCut}.
 
-run_WGCNA <- function(eset,
+run_WGCNA <- function(object,
                       power = 1:20,
                       RsquaredCut = 0.90,
                       module_prefix = "", # "P", "M", "T"
                       merge_modules)
 {
   # Transpose for WGCNA
-  datExpr <- t(exprs(eset))
+  datExpr <- t(exprs(object))
 
   # # Check if correlations can be calculated for all pair of features
   # if (anyNA(datExpr %*% t(datExpr))) {
@@ -224,11 +223,11 @@ run_WGCNA <- function(eset,
   modules <- data.frame(moduleColor = moduleColors,
                         moduleID = paste0(module_prefix, dynamicMods))
   color2id <- deframe(unique(modules))
-  modules <- cbind(modules, fData(eset))
+  modules <- cbind(modules, fData(object))
 
   colnames(MEs) <- color2id[sub("^ME", "", colnames(MEs))]
 
-  ME_long <- pData(eset)[, c("bid", "sex", "timepoint")]
+  ME_long <- pData(object)[, c("bid", "sex", "timepoint")]
   setDT(ME_long)
   ME_long <- cbind(ME_long, MEs)
 

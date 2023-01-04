@@ -7,16 +7,15 @@
 plot_volcano(x, pval_cutoff = 0.05, colors = c("#3366ff", "darkred", "grey"))
 }
 \arguments{
-\item{x}{a \code{matrix} or \code{data.frame} containing differential analysis results. Must include columns logFC, log10_pval, sign_logFC, contrast, label,}
+\item{x}{a \code{matrix} or \code{data.frame} containing differential
+analysis results. Must include columns logFC, log10_pval, sign_logFC,
+contrast, and label.}
 
 \item{pval_cutoff}{numeric; cutoff for p-values to be considered significant.
 Adds a dashed horizontal line to the plot.}
 
 \item{colors}{character; length 3 vector of significantly negative,
 significantly positive, and non-significant (NS) logFC colors.}
-
-\item{scale}{numeric; scaling factor used when saving the plot. Default is
-2.5.}
 }
 \value{
 A \code{ggplot2} object.

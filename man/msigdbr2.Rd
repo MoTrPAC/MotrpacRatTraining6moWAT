@@ -29,12 +29,13 @@ lowercase letters. Improves appearance of plots, such as those produced by
 }
 \value{
 A \code{\link[data.table]{data.table}} with columns
-"gs_exact_source" (term ID), "gs_subcat" (subcategory), "gs_description"
-(term description), and a list column of gene IDs specified by \code{genes}.
+  "gs_exact_source" (term ID), "gs_subcat" (subcategory), "gs_description"
+  (term description), and a list column of gene IDs specified by
+  \code{genes}.
 }
 \description{
 Wrapper around \code{\link[msigdbr]{msigdbr}}. Reformats pathway
-data for use with \code{\link{fgsea2}}.
+  data for use with \code{\link{fgsea2}}.
 }
 \examples{
 x <- msigdbr2(species = "rat",
@@ -43,11 +44,11 @@ x <- msigdbr2(species = "rat",
 }
 \references{
 Liberzon, A., Birger, C., Thorvaldsdóttir, H., Ghandi, M.,
-Mesirov, J. P., & Tamayo, P. (2015). The Molecular Signatures Database
-(MSigDB) hallmark gene set collection. \emph{Cell systems, 1}(6), 417–425.
-\url{https://doi.org/10.1016/j.cels.2015.12.004}
+  Mesirov, J. P., & Tamayo, P. (2015). The Molecular Signatures Database
+  (MSigDB) hallmark gene set collection. \emph{Cell systems, 1}(6), 417--425.
+  \url{https://doi.org/10.1016/j.cels.2015.12.004}
 
-Dolgalev, I. (2022). msigdbr: MSigDB Gene Sets for Multiple Organisms in a
-Tidy Data Format. R package version 7.5.1,
-\url{https:://igordot.github.io/msigdbr}
+  Dolgalev, I. (2022). msigdbr: MSigDB Gene Sets for Multiple Organisms in a
+  Tidy Data Format. R package version 7.5.1,
+  \url{https:://igordot.github.io/msigdbr}
 }

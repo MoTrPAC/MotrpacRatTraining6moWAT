@@ -29,8 +29,9 @@ enrichmat(
 )
 }
 \arguments{
-\item{x}{\code{data.frame}; output of \code{\link[fgsea]{fgsea}} or
-\code{\link{fgsea2}}. Must contain a "contrast" column.}
+\item{x}{object of class \code{data.frame}; output of
+\code{\link[fgsea]{fgsea}} or \code{\link{fgsea2}}. Must contain a
+"contrast" column.}
 
 \item{n_top}{integer; number of pathways to display. Defaults to the top 15
 pathways that are most significantly enriched across all contrasts.}
@@ -44,8 +45,7 @@ Default is "pathway".}
 
 \item{NES_column}{similar to \code{rownames_column}. The name of a column
 containing the normalized enrichment scores (NES) that determines the
-heatmap body colors. Values between -1 and +1 (not interesting; noise) will
-appear white.}
+heatmap body colors. Values between -1 and +1 (noise) will appear white.}
 
 \item{padj_column}{similar to \code{rownames_column}. The name of a column
 containing the adjusted p-values that determine the area of each circle in
@@ -56,26 +56,29 @@ Defaults to \code{padj_column}.}
 
 \item{padj_cutoff}{numeric; cutoff for terms to be statistically significant.
 If \code{plot_sig_only=TRUE}, only those pathways with at least one
-\code{padj_column} value less than this threshold may appear in the heatmap.
-Default is 0.05.}
+\code{padj_column} value less than this threshold may appear in the
+heatmap. Default is 0.05.}
 
-\item{plot_sig_only}{logical; whether to plot only those \code{n_top} terms that
-have at least one \code{padj_column} value less than \code{padj_cutoff}.}
+\item{plot_sig_only}{logical; whether to plot only those \code{n_top} terms
+that have at least one \code{padj_column} value less than
+\code{padj_cutoff}.}
 
 \item{padj_fill}{character; the background color used for values in
-\code{padj_column} that are less than \code{padj_cutoff}. Default is "lightgrey".}
+\code{padj_column} that are less than \code{padj_cutoff}. Default is
+"lightgrey".}
 
 \item{colors}{character; vector of length 2 specifying the colors for the
 largest negative and largest positive values, respectively. Defaults to
-version of blue (#3366ff) and red (specifically, darkred).}
+blue (#3366ff) and red (specifically, darkred).}
 
 \item{scale_by}{character; whether to scale the circles such that the
 most-significant term in each row (\code{scale_by="row"}), column
-(\code{scale_by="column"}), or overall (\code{scale_by="none"}) is of maximum area.
-Default is "row" to better visualize patterns across contrasts.}
+(\code{scale_by="column"}), or overall (\code{scale_by="none"}) is of
+maximum area. Default is "row" to better visualize patterns across
+contrasts.}
 
-\item{cell_size}{\code{unit} object; the size of each heatmap cell. Default is
-\code{unit(14, "points")}.}
+\item{cell_size}{\code{unit} object; the size of each heatmap cell. Default
+is \code{unit(14, "points")}.}
 
 \item{filename}{character; the filename used to save the heatmap. If
 \code{character(0)} (default), the heatmap will be displayed instead.}
@@ -84,8 +87,8 @@ Default is "row" to better visualize patterns across contrasts.}
 
 \item{width}{same as \code{height}.}
 
-\item{units}{character; units that define \code{height} and \code{width}. Defaults to
-"in" (inches).}
+\item{units}{character; units that define \code{height} and \code{width}.
+Defaults to "in" (inches).}
 
 \item{heatmap_args}{list; additional arguments passed to
 \code{\link[ComplexHeatmap]{Heatmap}}.}

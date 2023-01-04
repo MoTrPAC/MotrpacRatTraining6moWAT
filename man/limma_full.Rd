@@ -5,7 +5,7 @@
 \title{LIMMA Convenience Wrapper}
 \usage{
 limma_full(
-  eset,
+  object,
   model.str,
   coef.str,
   contrasts,
@@ -20,44 +20,46 @@ limma_full(
 )
 }
 \arguments{
-\item{eset}{\code{eSet} (or most likely \code{eSet} subclass) object. The
-\code{exprs} slot can be either a matrix of log2 relative abundances or counts.
-If the latter, the limma--edgeR pipeline
-(\url{https://doi.org/10.12688/f1000research.9005.3}) will be used.}
+\item{object}{Object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}}. The
+\code{exprs} slot can be either a matrix of log\eqn{_2} relative abundances
+or counts. If the latter, the limma--edgeR pipeline
+(\url{https://doi.org/10.12688/f1000research.9005.3}) will automatically be
+used.}
 
 \item{model.str}{character; formulation of the model (e.g. \code{"~ a + b"}).
-If \code{contrasts} are provided, this should be a no-intercept model (it should
-include 0 or -1 as terms). See \code{\link[stats]{lm}} for more details.}
+If \code{contrasts} are provided, this should be a no-intercept model (it
+should include 0 or -1 as terms). See \code{\link[stats]{lm}} for more
+details.}
 
 \item{coef.str}{character; coefficient of interest. One of
-\code{colnames(pData(eset))}.}
+\code{colnames(pData(object))}.}
 
 \item{contrasts}{character; optional contrasts of the form \code{"a-b"} to
 test.}
 
 \item{trend}{logical; should an intensity-dependent trend be allowed for the
 prior variance? If \code{FALSE}, then the prior variance is constant.
-Alternatively, \code{trend} can be a row-wise numeric vector, which will be used
-as the covariate for the prior variance. See \code{\link[limma]{eBayes}}
-for more details.}
-
-\item{robust}{logical; should the estimation of \code{df.prior} and \code{var.prior} be
-robustified against outlier sample variances? See
+Alternatively, \code{trend} can be a row-wise numeric vector, which will be
+used as the covariate for the prior variance. See
 \code{\link[limma]{eBayes}} for more details.}
 
-\item{var.group}{character; the column in \code{pData(eset)} indicating
+\item{robust}{logical; should the estimation of \code{df.prior} and
+\code{var.prior} be robustified against outlier sample variances? See
+\code{\link[limma]{eBayes}} for more details.}
+
+\item{var.group}{character; the column in \code{pData(object)} indicating
 groups that will have different relative quality weights. The default
 (\code{character(0)}) will weight each sample equally (all samples given a
 weight of 1). Weights affect the logFC and P.Value columns of the results.}
 
-\item{block}{\code{NULL} or character; name of a column in \code{pData(eset)}
-specifying a blocking variable. Passed to
+\item{block}{\code{NULL} or character; name of a column in
+\code{pData(object)} specifying a blocking variable. Passed to
 \code{\link[limma]{duplicateCorrelation}}. See
 \href{https://support.bioconductor.org/p/125489/#125602}{When to use
-\code{duplicateCorrelation}}. Section 9.7 "Multi-level Experiments" of the LIMMA
-User's Guide (linked in "See Also") explains when to use
-\code{duplicateCorrelation}. Currently ignored if \code{exprs(eset)} is a matrix of
-counts.}
+\code{duplicateCorrelation}}. Section 9.7 "Multi-level Experiments" of the
+\href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA
+User's Guide} explains when to use \code{duplicateCorrelation}. Currently
+ignored if \code{exprs(object)} is a matrix of counts.}
 
 \item{plot}{logical; whether to generate diagnostic plots. If \code{TRUE},
 generates a barplot of weights applied to each sample and a plot of the
@@ -68,71 +70,71 @@ mean-variance trend using \code{\link[limma]{plotSA}}.}
 See \code{\link[stats]{p.adjust}} for details.}
 
 \item{adjust.globally}{logical; should p-values from all contrasts be
-adjusted together using \code{adjust.method}? Set to \code{FALSE} if the contrasts
-being tested are not closely related. See the "Multiple Testing Across
-Contrasts" section of the LIMMA User's Guide (linked in "See Also") for
-more information.}
+adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
+contrasts being tested are not closely related. See the "Multiple Testing
+Across Contrasts" section of the LIMMA User's Guide (linked in "See Also")
+for more information.}
 
 \item{...}{additional arguments passed to \code{\link[limma]{plotSA}}.}
 }
 \value{
 \code{data.frame}. Output of \code{\link[limma]{topTable}} with
-additional columns \code{feature}, \code{contrast}, and column(s) for the
-standard error (se) of the logFC. All columns from \code{fData} are also
-included.
+  additional columns \code{feature}, \code{contrast}, and column(s) for the
+  standard error (se) of the logFC. All columns from \code{fData} are also
+  included.
 }
 \description{
 A convenience wrapper for differential analysis with LIMMA.
-Performs moderated t-tests, F-tests, or linear regression.
+  Performs moderated t-tests, F-tests, or linear regression.
 }
 \details{
 An MDS plot (produced by \code{\link[limma]{plotMDS}}) is used to
-determine the appropriate value of \code{var.group}. If samples within
-phenotype groups tend to cluster well and have similar dispersions, the
-default \code{var.group = character(0)} is recommended. If samples within
-phenotype groups tend to cluster well, but different groups are more or
-less dispersed, it may be beneficial to set \code{var.group} to the name of
-the phenotype column. If one or more samples tend to cluster poorly with
-samples of the same phenotype, it may be beneficial to weight by sample.
-That is, set \code{var.group} to the name of the column in
-\code{pData(eset)} that uniquely identifies each sample. If variation
-between samples or groups of samples is biological rather than technical,
-weighting is not recommended.
+  determine the appropriate value of \code{var.group}. If samples within
+  phenotype groups tend to cluster well and have similar dispersions, the
+  default \code{var.group = character(0)} is recommended. If samples within
+  phenotype groups tend to cluster well, but different groups are more or
+  less dispersed, it may be beneficial to set \code{var.group} to the name of
+  the phenotype column. If one or more samples tend to cluster poorly with
+  samples of the same phenotype, it may be beneficial to weight by sample.
+  That is, set \code{var.group} to the name of the column in
+  \code{pData(object)} that uniquely identifies each sample. If variation
+  between samples or groups of samples is biological rather than technical,
+  weighting is not recommended.
 
-The plot of the mean-variance trend helps determine whether to fit a trend
-line to the prior variance (default is \code{trend = TRUE}). It also helps
-determine if the prior variance should be robustified against outlier
-sample variances (\code{robust = TRUE}). See \code{\link[limma]{eBayes}}
-for more details.
+  The plot of the mean-variance trend helps determine whether to fit a trend
+  line to the prior variance (default is \code{trend = TRUE}). It also helps
+  determine if the prior variance should be robustified against outlier
+  sample variances (\code{robust = TRUE}). See \code{\link[limma]{eBayes}}
+  for more details.
 }
 \references{
 Smyth G. K. (2004). Linear models and empirical bayes methods for
-assessing differential expression in microarray experiments. \emph{Statistical
-applications in genetics and molecular biology}, \emph{3}, Article3.
-\url{https://doi.org/10.2202/1544-6115.1027}
+  assessing differential expression in microarray experiments.
+  \emph{Statistical applications in genetics and molecular biology, 3},
+  Article3. \url{https://doi.org/10.2202/1544-6115.1027}
 
-Smyth, G. K., Michaud, J., and Scott, H. (2005). The use of within-array
-replicate spots for assessing differential expression in microarray
-experiments. Bioinformatics 21(9), 2067--2075.
-\url{http://bioinformatics.oxfordjournals.org/content/21/9/2067} Preprint
-with corrections: \url{http://www.statsci.org/smyth/pubs/dupcor.pdf}
+  Smyth, G. K., Michaud, J., and Scott, H. (2005). The use of within-array
+  replicate spots for assessing differential expression in microarray
+  experiments. \emph{Bioinformatics 21}(9), 2067--2075.
+  \url{http://bioinformatics.oxfordjournals.org/content/21/9/2067} Preprint
+  with corrections: \url{http://www.statsci.org/smyth/pubs/dupcor.pdf}
 
-Liu, R., Holik, A. Z., Su, S., Jansz, N., Chen, K., Leong, H. S., Blewitt,
-M. E., Asselin-Labat, M. L., Smyth, G. K., & Ritchie, M. E. (2015). Why
-weight? Modelling sample and observational level variability improves power
-in RNA-seq analyses. \emph{Nucleic acids research}, \emph{43}(15), e97.
-\url{https://doi.org/10.1093/nar/gkv412}
+  Liu, R., Holik, A. Z., Su, S., Jansz, N., Chen, K., Leong, H. S., Blewitt,
+  M. E., Asselin-Labat, M. L., Smyth, G. K., & Ritchie, M. E. (2015). Why
+  weight? Modelling sample and observational level variability improves power
+  in RNA-seq analyses. \emph{Nucleic acids research, 43}(15), e97.
+  \url{https://doi.org/10.1093/nar/gkv412}
 
-Law, C. W., Alhamdoosh, M., Su, S., Dong, X., Tian, L., Smyth, G. K., &
-Ritchie, M. E. (2016). RNA-seq analysis is easy as 1-2-3 with limma, Glimma
-and edgeR. \emph{F1000Research, 5}, ISCB Comm J-1408.
-\url{https://doi.org/10.12688/f1000research.9005.3}
+  Law, C. W., Alhamdoosh, M., Su, S., Dong, X., Tian, L., Smyth, G. K., &
+  Ritchie, M. E. (2016). RNA-seq analysis is easy as 1-2-3 with limma, Glimma
+  and edgeR. \emph{F1000Research, 5}, ISCB Comm J-1408.
+  \url{https://doi.org/10.12688/f1000research.9005.3}
 
-Phipson, B., Lee, S., Majewski, I. J., Alexander, W. S., & Smyth, G. K.
-(2016). ROBUST HYPERPARAMETER ESTIMATION PROTECTS AGAINST HYPERVARIABLE
-GENES AND IMPROVES POWER TO DETECT DIFFERENTIAL EXPRESSION. \emph{The annals of
-applied statistics}, \emph{10}(2), 946--963.
-\url{https://doi.org/10.1214/16-AOAS920}
+  Phipson, B., Lee, S., Majewski, I. J., Alexander, W. S., & Smyth, G. K.
+  (2016). ROBUST HYPERPARAMETER ESTIMATION PROTECTS AGAINST HYPERVARIABLE
+  GENES AND IMPROVES POWER TO DETECT DIFFERENTIAL EXPRESSION. \emph{The
+  annals of applied statistics, 10}(2), 946--963.
+  \url{https://doi.org/10.1214/16-AOAS920}
 }
 \seealso{
 \href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA

@@ -7,11 +7,12 @@
 update_GO_names(x, version = packageVersion("msigdbr"), capitalize = FALSE)
 }
 \arguments{
-\item{x}{a `data.frame` produced by \code{link[msigdbr]{msigdbr}} or
-\code{\link{msigdbr2}} containing columns `gs_description` and `gs_subcat`.}
+\item{x}{object of class \code{data.frame} produced by
+\code{link[msigdbr]{msigdbr}} or \code{\link{msigdbr2}} containing columns
+\code{gs_description} and \code{gs_subcat}.}
 
-\item{version}{character string specifying the version of `msigdbr` to use.
-Defaults to the current version.}
+\item{version}{character string specifying the version of \code{msigdbr} to
+use. Defaults to the current version.}
 
 \item{capitalize}{logical; whether to capitalize the first letter of each
 description if the first word does not contain a mix of capital and
@@ -19,10 +20,11 @@ lowercase letters. Improves appearance of plots, such as those produced by
 \code{\link{enrichmat}}.}
 }
 \value{
-A `data.frame`. The same as `x`, but with updated descriptions.
+Object of class \code{data.frame}. The same as \code{x}, but with
+  updated descriptions.
 }
 \description{
-Update entries in the `gs_description` column of
+Update entries in the \code{gs_description} column of
   \code{\link{msigdbr}} results to use terms from the
   \href{http://geneontology.org/}{Gene Ontology Consortium}.
 }
@@ -42,11 +44,11 @@ tail(x$gs_description) # after
 }
 \references{
 Ashburner, M., et al. (2000). Gene ontology: tool for the
-  unification of biology. The Gene Ontology Consortium. *Nature genetics*,
-  *25*(1), 25–29. \url{https://doi.org/10.1038/75556}
+  unification of biology. The Gene Ontology Consortium. \emph{Nature
+  genetics, 25}(1), 25--29. \url{https://doi.org/10.1038/75556}
 
   Gene Ontology Consortium (2021). The Gene Ontology resource: enriching a
-  GOld mine. *Nucleic acids research*, *49*(D1), D325–D334.
+  GOld mine. \emph{Nucleic acids research, 49}(D1), D325--D334.
   \url{https://doi.org/10.1093/nar/gkaa1113}
 }
 \seealso{

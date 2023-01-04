@@ -45,8 +45,8 @@ provided, the plot will not be displayed.}
 
 \item{width}{numeric; the save width.}
 
-\item{units}{character; the units of \code{height} and \code{width}. Default is "in"
-(inches).}
+\item{units}{character; the units of \code{height} and \code{width}. Default
+is "in" (inches).}
 
 \item{save_args}{list; additional arguments passed to the graphics device.
 See \code{\link[grDevices]{png}} for options.}
@@ -56,15 +56,15 @@ See \code{\link[grDevices]{png}} for options.}
 }
 \description{
 Create an UpSet plot annotated with intersection and set sizes.
-Essentially a modified version of \code{\link[ComplexHeatmap]{UpSet}}.
+  Essentially a modified version of \code{\link[ComplexHeatmap]{UpSet}}.
 }
 \details{
 See \code{\link[ComplexHeatmap]{UpSet}} for details and sections
-mentioned in Arguments.
+  mentioned in Arguments.
 }
 \references{
 Lex, A., Gehlenborg, N., Strobelt, H., Vuillemot, R., & Pfister,
-H. (2014). UpSet: Visualization of Intersecting Sets. \emph{IEEE transactions on
-visualization and computer graphics, 20}(12), 1983--1992.
-\url{https://doi.org/10.1109/TVCG.2014.2346248}
+  H. (2014). UpSet: Visualization of Intersecting Sets. \emph{IEEE
+  transactions on visualization and computer graphics, 20}(12), 1983--1992.
+  \url{https://doi.org/10.1109/TVCG.2014.2346248}
 }

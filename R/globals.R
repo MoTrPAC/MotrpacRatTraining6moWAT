@@ -41,7 +41,8 @@ utils::globalVariables(
     "moduleColor",
     "moduleNum",
     "ME",
-    "plotlist"
+    "plotlist",
+    "x"
   )
 )
 

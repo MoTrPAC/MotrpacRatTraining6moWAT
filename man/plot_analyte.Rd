@@ -7,9 +7,9 @@
 plot_analyte(x, analyte = "")
 }
 \arguments{
-\item{x}{a `data.frame` with required columns value, sex, and timepoint.}
+\item{x}{a \code{data.frame} with required columns value, sex, and timepoint.}
 
-\item{analyte}{character; the name of a column of `x`.}
+\item{analyte}{character; the name of a column of \code{x}.}
 }
 \description{
 Generate a scatterplot of clinical analyte values.

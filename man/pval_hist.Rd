@@ -4,23 +4,22 @@
 \alias{pval_hist}
 \title{Create p-value Histograms}
 \usage{
-pval_hist(x, pval = "adj.P.Val", ylims = c(0, NA), scale = 2.5)
+pval_hist(x, pval = "adj.P.Val", ylims = c(0, NA))
 }
 \arguments{
-\item{x}{a \code{matrix} or \code{data.frame} containing differential analysis results. Must include columns logFC, log10_pval, sign_logFC, contrast, label,}
+\item{x}{a \code{matrix} or \code{data.frame} containing differential
+analysis results. Must include columns logFC, log10_pval, sign_logFC,
+contrast, and label.}
 
-\item{pval}{character; the name of a column in \code{x} containing p-values or
-adjusted p-values.}
+\item{pval}{character; the name of a column in \code{x} containing p-values
+or adjusted p-values.}
 
 \item{ylims}{numeric vector of length 2. Limits of y-axis.}
-
-\item{scale}{numeric; scaling factor used when saving the plot. Default is
-2.5.}
 }
 \value{
 A \code{ggplot2} object.
 }
 \description{
 Create p-value histograms with
-\code{\link[ggplot2]{ggplot2-package}}.
+  \code{\link[ggplot2]{ggplot2-package}}.
 }

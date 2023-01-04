@@ -10,16 +10,14 @@
 #' @param adjust.method character string; the p-value correction method. Can be
 #'   abbreviated. See \code{\link[stats]{p.adjust.methods}}.
 #' @param adjust.globally logical; should p-values from all contrasts be
-#'   adjusted together using `adjust.method`? Set to `FALSE` if the contrasts
+#'   adjusted together using \code{adjust.method}? Set to \code{FALSE} if the contrasts
 #'   being tested are not closely related.
-#' @param seed numeric or `NULL`; passed to `set.seed`.
+#' @param seed numeric or \code{NULL}; passed to \code{set.seed}.
 #' @param ... additional arguments passed to
 #'   \code{\link[fgsea]{fgseaMultilevel}}.
 #'
 #' @returns A \code{\link[data.table]{data.table}} with results for each
 #'   contrast. See \code{\link[fgsea]{fgsea}} for more details.
-#'
-#' @md
 #'
 #' @importFrom fgsea fgseaMultilevel
 #' @importFrom data.table rbindlist `:=` setDT

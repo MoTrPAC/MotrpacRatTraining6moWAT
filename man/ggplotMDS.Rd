@@ -4,16 +4,16 @@
 \alias{ggplotMDS}
 \title{MDS plots with ggplot2}
 \usage{
-ggplotMDS(x)
+ggplotMDS(object)
 }
 \arguments{
-\item{x}{an \code{link[MSnbase]{MSnSet}} object.}
+\item{object}{object of class \code{link[MSnbase:MSnSet-class]{MSnSet}}.}
 }
 \value{
 A \code{\link[ggplot2]{ggplot}} object.
 }
 \description{
-A `ggplot2` version of \code{\link[limma]{plotMDS}} tailored to
-  the MoTrPAC PASS1B data. Samples are labeled by the number of weeks of
-  exercise training (0, 1, 2, 4, 8) and colored according to sex.
+A \code{ggplot2} version of \code{\link[limma]{plotMDS}}
+  tailored to the MoTrPAC PASS1B data. Samples are labeled by the number of
+  weeks of exercise training (0, 1, 2, 4, 8) and colored according to sex.
 }

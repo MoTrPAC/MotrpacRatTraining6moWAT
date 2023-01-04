@@ -3,37 +3,39 @@
 #' @description A convenience wrapper for differential analysis with LIMMA.
 #'   Performs moderated t-tests, F-tests, or linear regression.
 #'
-#' @param eset \code{eSet} (or most likely \code{eSet} subclass) object. The
-#'   `exprs` slot can be either a matrix of log2 relative abundances or counts.
-#'   If the latter, the limma--edgeR pipeline
-#'   (\url{https://doi.org/10.12688/f1000research.9005.3}) will be used.
+#' @param object Object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}}. The
+#'   \code{exprs} slot can be either a matrix of log\eqn{_2} relative abundances
+#'   or counts. If the latter, the limma--edgeR pipeline
+#'   (\url{https://doi.org/10.12688/f1000research.9005.3}) will automatically be
+#'   used.
 #' @param model.str character; formulation of the model (e.g. \code{"~ a + b"}).
-#'   If `contrasts` are provided, this should be a no-intercept model (it should
-#'   include 0 or -1 as terms). See \code{\link[stats]{lm}} for more details.
+#'   If \code{contrasts} are provided, this should be a no-intercept model (it
+#'   should include 0 or -1 as terms). See \code{\link[stats]{lm}} for more
+#'   details.
 #' @param coef.str character; coefficient of interest. One of
-#'   \code{colnames(pData(eset))}.
+#'   \code{colnames(pData(object))}.
 #' @param contrasts character; optional contrasts of the form \code{"a-b"} to
 #'   test.
 #' @param trend logical; should an intensity-dependent trend be allowed for the
-#'   prior variance? If `FALSE`, then the prior variance is constant.
-#'   Alternatively, `trend` can be a row-wise numeric vector, which will be used
-#'   as the covariate for the prior variance. See \code{\link[limma]{eBayes}}
-#'   for more details.
-#' @param robust logical; should the estimation of `df.prior` and `var.prior` be
-#'   robustified against outlier sample variances? See
+#'   prior variance? If \code{FALSE}, then the prior variance is constant.
+#'   Alternatively, \code{trend} can be a row-wise numeric vector, which will be
+#'   used as the covariate for the prior variance. See
 #'   \code{\link[limma]{eBayes}} for more details.
-#' @param var.group character; the column in \code{pData(eset)} indicating
+#' @param robust logical; should the estimation of \code{df.prior} and
+#'   \code{var.prior} be robustified against outlier sample variances? See
+#'   \code{\link[limma]{eBayes}} for more details.
+#' @param var.group character; the column in \code{pData(object)} indicating
 #'   groups that will have different relative quality weights. The default
 #'   (\code{character(0)}) will weight each sample equally (all samples given a
 #'   weight of 1). Weights affect the logFC and P.Value columns of the results.
-#' @param block `NULL` or character; name of a column in `pData(eset)`
-#'   specifying a blocking variable. Passed to
+#' @param block \code{NULL} or character; name of a column in
+#'   \code{pData(object)} specifying a blocking variable. Passed to
 #'   \code{\link[limma]{duplicateCorrelation}}. See
 #'   \href{https://support.bioconductor.org/p/125489/#125602}{When to use
-#'   `duplicateCorrelation`}. Section 9.7 "Multi-level Experiments" of the LIMMA
-#'   User's Guide (linked in "See Also") explains when to use
-#'   `duplicateCorrelation`. Currently ignored if `exprs(eset)` is a matrix of
-#'   counts.
+#'   \code{duplicateCorrelation}}. Section 9.7 "Multi-level Experiments" of the
+#'   \href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA
+#'   User's Guide} explains when to use \code{duplicateCorrelation}. Currently
+#'   ignored if \code{exprs(object)} is a matrix of counts.
 #' @param plot logical; whether to generate diagnostic plots. If \code{TRUE},
 #'   generates a barplot of weights applied to each sample and a plot of the
 #'   mean-variance trend using \code{\link[limma]{plotSA}}.
@@ -41,12 +43,11 @@
 #'   (Benjamini-Hochberg), which will control the false discovery rate (FDR).
 #'   See \code{\link[stats]{p.adjust}} for details.
 #' @param adjust.globally logical; should p-values from all contrasts be
-#'   adjusted together using `adjust.method`? Set to `FALSE` if the contrasts
-#'   being tested are not closely related. See the "Multiple Testing Across
-#'   Contrasts" section of the LIMMA User's Guide (linked in "See Also") for
-#'   more information.
+#'   adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
+#'   contrasts being tested are not closely related. See the "Multiple Testing
+#'   Across Contrasts" section of the LIMMA User's Guide (linked in "See Also")
+#'   for more information.
 #' @param ... additional arguments passed to \code{\link[limma]{plotSA}}.
-#'
 #'
 #' @return \code{data.frame}. Output of \code{\link[limma]{topTable}} with
 #'   additional columns \code{feature}, \code{contrast}, and column(s) for the
@@ -63,7 +64,7 @@
 #'   the phenotype column. If one or more samples tend to cluster poorly with
 #'   samples of the same phenotype, it may be beneficial to weight by sample.
 #'   That is, set \code{var.group} to the name of the column in
-#'   \code{pData(eset)} that uniquely identifies each sample. If variation
+#'   \code{pData(object)} that uniquely identifies each sample. If variation
 #'   between samples or groups of samples is biological rather than technical,
 #'   weighting is not recommended.
 #'
@@ -72,7 +73,6 @@
 #'   determine if the prior variance should be robustified against outlier
 #'   sample variances (\code{robust = TRUE}). See \code{\link[limma]{eBayes}}
 #'   for more details.
-#'
 #'
 #' @seealso
 #' \href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA
@@ -84,41 +84,38 @@
 #' \href{http://varianceexplained.org/statistics/interpreting-pvalue-histogram/}{How
 #' to interpret a p-value histogram}
 #'
-#' Breheny, P., Stromberg, A., & Lambert, J. (2018). *p*-Value Histograms:
-#' Inference and Diagnostics. *High-throughput, 7*(3), 23.
+#' Breheny, P., Stromberg, A., & Lambert, J. (2018). \emph{p}-Value Histograms:
+#' Inference and Diagnostics. \emph{High-throughput, 7}(3), 23.
 #' \url{https://doi.org/10.3390/ht7030023}
 #'
 #'
 #' @references Smyth G. K. (2004). Linear models and empirical bayes methods for
-#'   assessing differential expression in microarray experiments. *Statistical
-#'   applications in genetics and molecular biology*, *3*, Article3.
-#'   \url{https://doi.org/10.2202/1544-6115.1027}
+#'   assessing differential expression in microarray experiments.
+#'   \emph{Statistical applications in genetics and molecular biology, 3},
+#'   Article3. \url{https://doi.org/10.2202/1544-6115.1027}
 #'
 #'   Smyth, G. K., Michaud, J., and Scott, H. (2005). The use of within-array
 #'   replicate spots for assessing differential expression in microarray
-#'   experiments. Bioinformatics 21(9), 2067--2075.
+#'   experiments. \emph{Bioinformatics 21}(9), 2067--2075.
 #'   \url{http://bioinformatics.oxfordjournals.org/content/21/9/2067} Preprint
 #'   with corrections: \url{http://www.statsci.org/smyth/pubs/dupcor.pdf}
 #'
 #'   Liu, R., Holik, A. Z., Su, S., Jansz, N., Chen, K., Leong, H. S., Blewitt,
 #'   M. E., Asselin-Labat, M. L., Smyth, G. K., & Ritchie, M. E. (2015). Why
 #'   weight? Modelling sample and observational level variability improves power
-#'   in RNA-seq analyses. *Nucleic acids research*, *43*(15), e97.
+#'   in RNA-seq analyses. \emph{Nucleic acids research, 43}(15), e97.
 #'   \url{https://doi.org/10.1093/nar/gkv412}
 #'
 #'   Law, C. W., Alhamdoosh, M., Su, S., Dong, X., Tian, L., Smyth, G. K., &
 #'   Ritchie, M. E. (2016). RNA-seq analysis is easy as 1-2-3 with limma, Glimma
-#'   and edgeR. *F1000Research, 5*, ISCB Comm J-1408.
+#'   and edgeR. \emph{F1000Research, 5}, ISCB Comm J-1408.
 #'   \url{https://doi.org/10.12688/f1000research.9005.3}
 #'
 #'   Phipson, B., Lee, S., Majewski, I. J., Alexander, W. S., & Smyth, G. K.
 #'   (2016). ROBUST HYPERPARAMETER ESTIMATION PROTECTS AGAINST HYPERVARIABLE
-#'   GENES AND IMPROVES POWER TO DETECT DIFFERENTIAL EXPRESSION. *The annals of
-#'   applied statistics*, *10*(2), 946--963.
+#'   GENES AND IMPROVES POWER TO DETECT DIFFERENTIAL EXPRESSION. \emph{The
+#'   annals of applied statistics, 10}(2), 946--963.
 #'   \url{https://doi.org/10.1214/16-AOAS920}
-#'
-#'
-#' @md
 #'
 #' @importFrom MSnbase exprs pData
 #' @importFrom stats terms model.matrix p.adjust
@@ -132,7 +129,7 @@
 #'
 #' @author Tyler Sagendorf, Vlad Petyuk
 
-limma_full <- function(eset,
+limma_full <- function(object,
                        model.str,
                        coef.str,
                        contrasts,
@@ -146,23 +143,23 @@ limma_full <- function(eset,
                        ...)
 {
   # Remove samples with all missing values
-  na.idx.sample <- colMeans(is.na(exprs(eset))) == 1
+  na.idx.sample <- colMeans(is.na(exprs(object))) == 1
   if (sum(na.idx.sample) > 0) {
     message(paste(sprintf("There are %d samples with all missing values.",
                           sum(na.idx.sample)), "These will be removed.",
                   sep = "\n"))
-    eset <- eset[, !na.idx.sample]
+    object <- object[, !na.idx.sample]
   }
 
   # Remove features with all missing values
-  na.idx <- rowMeans(is.na(exprs(eset))) == 1
+  na.idx <- rowMeans(is.na(exprs(object))) == 1
   if (sum(na.idx) > 0) {
     message(paste(sprintf("There are %d features with all missing values.",
                           sum(na.idx)), "These will be removed.", sep = "\n"))
-    eset <- eset[!na.idx, ]
+    object <- object[!na.idx, ]
   }
 
-  model.formula <- eval(parse(text = model.str), envir = pData(eset))
+  model.formula <- eval(parse(text = model.str), envir = pData(object))
 
   if (!missing(contrasts)) {
     if (attr(terms(model.formula), which = "intercept") != 0) {
@@ -175,7 +172,7 @@ limma_full <- function(eset,
   # Create design matrix and remove coef.str from the beginning of the levels
   # (easier for user when specifying contrasts)
   design <- model.matrix(model.formula)
-  if (!is.numeric(pData(eset)[[coef.str]])) {
+  if (!is.numeric(pData(object)[[coef.str]])) {
     colnames(design) <- sub(paste0("^", coef.str), "", colnames(design))
   }
 
@@ -185,22 +182,22 @@ limma_full <- function(eset,
   }
 
   # Some samples may be NA, so they will be dropped in the design matrix.
-  # Subset eset to only those rows present in the design matrix.
-  eset <- eset[, as.numeric(rownames(design))]
+  # Subset object to only those rows present in the design matrix.
+  object <- object[, as.numeric(rownames(design))]
 
   # By default, sample-level weights are all 1
-  weights <- rep(1, ncol(eset))
+  weights <- rep(1, ncol(object))
   names(weights) <- seq_along(weights)
 
   # Separate processing if dealing with RNA-seq (count) data
-  if (isTRUE(all.equal(exprs(eset),
-                       floor(exprs(eset))))) {
+  if (isTRUE(all.equal(exprs(object),
+                       floor(exprs(object))))) {
     message("Count data detected. Using the RNA-Seq pipeline.")
     # Convert to DGEList
-    dge <- DGEList(counts = exprs(eset),
-                   group = pData(eset)[[coef.str]],
-                   samples = pData(eset),
-                   genes = fData(eset))
+    dge <- DGEList(counts = exprs(object),
+                   group = pData(object)[[coef.str]],
+                   samples = pData(object),
+                   genes = fData(object))
 
     ## Filter
     keep <- filterByExpr(dge)
@@ -230,7 +227,7 @@ limma_full <- function(eset,
     # voom (convert to log2 CPM and calculate observational-level weights)
     if (!identical(var.group, character(0))) {
       y <- voomWithQualityWeights(dge, design = design,
-                                  var.group = pData(eset)[[var.group]],
+                                  var.group = pData(object)[[var.group]],
                                   plot = plot, method = "genebygene")
       weights <- y$targets$sample.weights
       names(weights) <- seq_along(weights)
@@ -242,28 +239,28 @@ limma_full <- function(eset,
   } else {
     # Non RNA-seq data -----
     if (!identical(var.group, character(0))) {
-      if (nrow(eset) < 10) {
+      if (nrow(object) < 10) {
         message("Fewer than 10 features. var.group will be ignored.")
       } else {
-        weights <- arrayWeights(eset, design, method = "genebygene",
-                                var.group = pData(eset)[[var.group]])
+        weights <- arrayWeights(object, design, method = "genebygene",
+                                var.group = pData(object)[[var.group]])
       }
     }
 
     # Linear modeling
     if (!is.null(block)) {
       # dupecor currently only used for non count data
-      block <- eval(parse(text = block), envir = pData(eset))
-      dupecor <- duplicateCorrelation(eset, design, block = block,
+      block <- eval(parse(text = block), envir = pData(object))
+      dupecor <- duplicateCorrelation(object, design, block = block,
                                       weights = weights)
 
-      fit <- lmFit(eset, design, weights = weights, block = block,
+      fit <- lmFit(object, design, weights = weights, block = block,
                    correlation = dupecor$consensus.correlation)
     } else {
-      fit <- lmFit(eset, design, weights = weights)
+      fit <- lmFit(object, design, weights = weights)
     }
     # If not enough data, set robust to FALSE
-    if (nrow(eset) < 10 & robust) {
+    if (nrow(object) < 10 & robust) {
       message("Fewer than 10 features. Using trend=FALSE, robust=FALSE instead.")
       trend <- robust <- FALSE
     }
@@ -306,7 +303,7 @@ limma_full <- function(eset,
       x$contrast <- contrast_i
 
       ## Column for logFC standard error
-      se <- sqrt(fit.smooth$s2.post)*fit.smooth$stdev.unscaled
+      se <- sqrt(fit.smooth$s2.post) * fit.smooth$stdev.unscaled
       se <- se[rownames(x), contrast_i, drop = FALSE]
       colnames(se) <- "se"
       x <- cbind(x, se)
@@ -336,7 +333,7 @@ limma_full <- function(eset,
                     adjust.method = adjust.method)
 
     ## Column(s) for standard error of logFC (se)
-    se <- sqrt(fit.smooth$s2.post)*fit.smooth$stdev.unscaled
+    se <- sqrt(fit.smooth$s2.post) * fit.smooth$stdev.unscaled
     se <- se[rownames(res), coef.str, drop = FALSE]
     colnames(se) <- paste0("se.", colnames(se))
     res <- cbind(res, se)

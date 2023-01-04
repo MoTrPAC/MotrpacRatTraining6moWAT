@@ -34,8 +34,8 @@ the elements of each gene set.}
 \code{\link[stats]{p.adjust.methods}}.}
 
 \item{adjust.globally}{logical; should p-values from all contrasts be
-adjusted together using \code{adjust.method}? Set to \code{FALSE} if the contrasts
-being tested are not closely related.}
+adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
+contrasts being tested are not closely related.}
 }
 \description{
 Custom wrapper for \code{\link[fgsea]{fora}}.

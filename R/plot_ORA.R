@@ -14,8 +14,6 @@
 #'
 #' @return A \code{\link[ggplot2]{ggplot}} object.
 #'
-#' @md
-#'
 #' @import ggplot2
 #' @importFrom latex2exp TeX
 #' @importFrom cowplot get_legend plot_grid
@@ -47,7 +45,6 @@ plot_ORA <- function(x,
                            gs_description)]
   x[, row_labels := factor(row_labels, levels = rev(unique(row_labels)))]
 
-
   p1 <- ggplot(x) +
     geom_point(aes(x = module, y = row_labels,
                    size = -log10(padj),
@@ -74,21 +71,15 @@ plot_ORA <- function(x,
         ticks.colour = "black",
         order = 2)) +
     scale_y_discrete(position = "right") +
-    # theme_bw(base_size = 6) +
     theme_pub() +
-    theme(#text = element_text(size = 6, color = "black"),
-      line = element_line(size = 0.3, color = "black"),
-      axis.ticks = element_blank(),
-      # axis.text = element_text(size = 6, color = "black"),
-      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
-      # axis.title = element_text(size = 6.5, color = "black"),
-      # legend.title = element_text(size = 6, color = "black"),
-      # legend.text = element_text(size = 5, color = "black"),
-      legend.position = "bottom",
-      legend.box.just = "left",
-      legend.direction = "horizontal",
-      legend.margin = margin(t = 4, r = 5, b = 4, l = 8),
-      plot.margin = margin(t = 5, r = 5, b = 5, l = 10))
+    theme(line = element_line(size = 0.3, color = "black"),
+          axis.ticks = element_blank(),
+          axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
+          legend.position = "bottom",
+          legend.box.just = "left",
+          legend.direction = "horizontal",
+          legend.margin = margin(t = 4, r = 5, b = 4, l = 8),
+          plot.margin = margin(t = 5, r = 5, b = 5, l = 10))
 
   p2 <- p1 + theme(legend.position = "none")
   le1 <- cowplot::get_legend(p1)

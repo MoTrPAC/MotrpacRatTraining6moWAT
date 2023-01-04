@@ -12,30 +12,31 @@ get_ranking(
 )
 }
 \arguments{
-\item{x}{A \code{data.frame}.}
+\item{x}{object of class \code{data.frame}. Typically results from
+\code{\link{limma_full}}.}
 
-\item{genes}{Character string; the name of a column in \code{x}. A ranking metric
-value will be calculated for each unique entry. Can be gene symbols, Entrez
-IDs, or Ensembl genes.}
+\item{genes}{string; the name of a column in \code{x}. A ranking metric value
+will be calculated for each unique entry. Can be gene symbols, Entrez IDs,
+or Ensembl genes.}
 
-\item{metric}{Character string specifying how the ranking metric will be
-calculated from \code{x}. Can be the name of a single column.}
+\item{metric}{string; specifies how the ranking metric will be calculated
+from \code{x}. Can be the name of a single column.}
 
-\item{contrast_column}{string; the name of a column in \code{x}. Entries in this
-column will be set as the names of the output list.}
+\item{contrast_column}{string; the name of a column in \code{x}. Entries in
+this column will be set as the names of the output list.}
 }
 \value{
 A named vector (if no "contrast" column) or list of sorted ranking
-metric values for each contrast in \code{x}.
+  metric values for each contrast in \code{x}.
 }
 \description{
 Calculate ranking metric values to be used with
-\code{\link{fgsea2}}.
+  \code{\link{fgsea2}}.
 }
 \details{
-The -log10-transformed p-value signed by the fold-change is similar
-to using t-statistics, but provides better separation between the extreme
-values in the tails and those close to 0 that are not as interesting. The
-log2 fold-change should not be used as the ranking metric, as it does not
-capture variability in the measurements.
+The -log\eqn{_{10}}-transformed p-value signed by the fold-change is
+  similar to using t-statistics, but provides better separation between the
+  extreme values in the tails and those close to 0 that are not as
+  interesting. The log2 fold-change should not be used as the ranking metric,
+  as it does not capture variability in the measurements.
 }

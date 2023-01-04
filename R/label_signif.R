@@ -4,8 +4,8 @@
 #'
 #' @param pvals numeric; vector of p-values.
 #'
-#' @return character vector of labels: p > 0.05 = "", 0.01 <= p < 0.05 = "*",
-#'   0.001 <= p < 0.01 = "**", p < 0.001 = "***"
+#' @return character vector of labels: p > 0.05 = "", 0.01 <= p < 0.05 = "\*",
+#'   0.001 <= p < 0.01 = "\*\*", p < 0.001 = "\*\*\*"
 #'
 #' @export label_signif
 

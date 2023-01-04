@@ -1,15 +1,16 @@
 #' @title Extended Range of Values
 #'
-#' @description `range_extend` returns a vector containing the minimum and
+#' @description \code{range_extend} returns a vector containing the minimum and
 #'   maximum of all the given arguments rounded outward to the value provided by
-#'   `nearest`.
+#'   \code{nearest}.
 #'
 #' @param x any \code{\link[base]{numeric}} object.
 #' @param nearest numeric; the range of \code{x} will be rounded out to the
 #'   value specified by \code{nearest}. Default is 1.
 #'
 #' @returns A \code{\link[base]{numeric}} vector of length 2 specifying the
-#'   range of values after rounding outward to the value provided by `nearest`.
+#'   range of values after rounding outward to the value provided by
+#'   \code{nearest}.
 #'
 #' @seealso \code{\link[base]{range}}
 #'

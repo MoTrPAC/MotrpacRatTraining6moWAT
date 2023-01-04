@@ -3,7 +3,6 @@
 #' @description Wrapper around \code{\link[msigdbr]{msigdbr}}. Reformats pathway
 #'   data for use with \code{\link{fgsea2}}.
 #'
-#'
 #' @param species character; scientific or common name of species. Default is
 #'   "Homo sapiens". \code{\link[msigdbr]{msigdbr_species}} displays all
 #'   possible choices.
@@ -13,25 +12,20 @@
 #'   \code{\link[msigdbr]{msigdbr_collections}} for details.
 #' @inheritParams update_GO_names
 #'
-#'
 #' @returns A \code{\link[data.table]{data.table}} with columns
 #'   "gs_exact_source" (term ID), "gs_subcat" (subcategory), "gs_description"
-#'   (term description), and a list column of gene IDs specified by `genes`.
-#'
+#'   (term description), and a list column of gene IDs specified by
+#'   \code{genes}.
 #'
 #' @importFrom data.table rbindlist `.SD` `:=` setnames setDF
 #' @importFrom msigdbr msigdbr_collections msigdbr
 #' @importFrom ontologyIndex get_OBO
-#' @importFrom dplyr %>%
 #'
 #' @export msigdbr2
 #'
-#' @md
-#'
-#'
 #' @references Liberzon, A., Birger, C., Thorvaldsdóttir, H., Ghandi, M.,
 #'   Mesirov, J. P., & Tamayo, P. (2015). The Molecular Signatures Database
-#'   (MSigDB) hallmark gene set collection. *Cell systems, 1*(6), 417–425.
+#'   (MSigDB) hallmark gene set collection. \emph{Cell systems, 1}(6), 417--425.
 #'   \url{https://doi.org/10.1016/j.cels.2015.12.004}
 #'
 #'   Dolgalev, I. (2022). msigdbr: MSigDB Gene Sets for Multiple Organisms in a
@@ -67,8 +61,8 @@ msigdbr2 <- function(species = "Homo sapiens",
     msigdbr(species = species,
             category = gs_cat[i],
             subcategory = gs_subcat[i])
-  }) %>%
-    rbindlist()
+  })
+  paths <- rbindlist(paths)
   setDT(paths)
 
   cols <- c("gs_subcat", "gs_exact_source", "gs_description", genes)

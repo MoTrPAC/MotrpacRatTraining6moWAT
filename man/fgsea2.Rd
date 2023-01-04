@@ -36,11 +36,11 @@ being tested are not closely related.}
 }
 \value{
 A \code{\link[data.table]{data.table}} with results for each
-contrast. See \code{\link[fgsea]{fgsea}} for more details.
+  contrast. See \code{\link[fgsea]{fgsea}} for more details.
 }
 \description{
 Custom wrapper for \code{\link[fgsea]{fgsea}} for use with
-output of \code{\link{msigdbr2}}.
+  output of \code{\link{msigdbr2}}.
 }
 \author{
 Tyler Sagendorf

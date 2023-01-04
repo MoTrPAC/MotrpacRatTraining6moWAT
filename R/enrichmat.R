@@ -2,47 +2,50 @@
 #'
 #' @description Creates a heatmap summarizing FGSEA results.
 #'
-#' @param x `data.frame`; output of \code{\link[fgsea]{fgsea}} or
-#'   \code{\link{fgsea2}}. Must contain a "contrast" column.
+#' @param x object of class \code{data.frame}; output of
+#'   \code{\link[fgsea]{fgsea}} or \code{\link{fgsea2}}. Must contain a
+#'   "contrast" column.
 #' @param n_top integer; number of pathways to display. Defaults to the top 15
 #'   pathways that are most significantly enriched across all contrasts.
 #' @param top_pathways character; vector of specific pathways to display. If
-#'   `NULL` (default), the `n_top` pathways will be displayed instead.
-#' @param rownames_column character; the name of a column in `x` containing
+#'   \code{NULL} (default), the \code{n_top} pathways will be displayed instead.
+#' @param rownames_column character; the name of a column in \code{x} containing
 #'   unique identifiers that will be used as the rownames in the heatmap.
 #'   Default is "pathway".
-#' @param NES_column similar to `rownames_column`. The name of a column
+#' @param NES_column similar to \code{rownames_column}. The name of a column
 #'   containing the normalized enrichment scores (NES) that determines the
-#'   heatmap body colors. Values between -1 and +1 (not interesting; noise) will
-#'   appear white.
-#' @param padj_column similar to `rownames_column`. The name of a column
+#'   heatmap body colors. Values between -1 and +1 (noise) will appear white.
+#' @param padj_column similar to \code{rownames_column}. The name of a column
 #'   containing the adjusted p-values that determine the area of each circle in
 #'   the heatmap.
 #' @param padj_legend_title character; title of the background fill legend.
-#'   Defaults to `padj_column`.
+#'   Defaults to \code{padj_column}.
 #' @param padj_cutoff numeric; cutoff for terms to be statistically significant.
-#'   If `plot_sig_only=TRUE`, only those pathways with at least one
-#'   `padj_column` value less than this threshold may appear in the heatmap.
-#'   Default is 0.05.
-#' @param plot_sig_only logical; whether to plot only those `n_top` terms that
-#'   have at least one `padj_column` value less than `padj_cutoff`.
+#'   If \code{plot_sig_only=TRUE}, only those pathways with at least one
+#'   \code{padj_column} value less than this threshold may appear in the
+#'   heatmap. Default is 0.05.
+#' @param plot_sig_only logical; whether to plot only those \code{n_top} terms
+#'   that have at least one \code{padj_column} value less than
+#'   \code{padj_cutoff}.
 #' @param padj_fill character; the background color used for values in
-#'   `padj_column` that are less than `padj_cutoff`. Default is "lightgrey".
+#'   \code{padj_column} that are less than \code{padj_cutoff}. Default is
+#'   "lightgrey".
 #' @param colors character; vector of length 2 specifying the colors for the
 #'   largest negative and largest positive values, respectively. Defaults to
-#'   version of blue (#3366ff) and red (specifically, darkred).
+#'   blue (#3366ff) and red (specifically, darkred).
 #' @param scale_by character; whether to scale the circles such that the
-#'   most-significant term in each row (`scale_by="row"`), column
-#'   (`scale_by="column"`), or overall (`scale_by="none"`) is of maximum area.
-#'   Default is "row" to better visualize patterns across contrasts.
-#' @param cell_size `unit` object; the size of each heatmap cell. Default is
-#'   `unit(14, "points")`.
+#'   most-significant term in each row (\code{scale_by="row"}), column
+#'   (\code{scale_by="column"}), or overall (\code{scale_by="none"}) is of
+#'   maximum area. Default is "row" to better visualize patterns across
+#'   contrasts.
+#' @param cell_size \code{unit} object; the size of each heatmap cell. Default
+#'   is \code{unit(14, "points")}.
 #' @param filename character; the filename used to save the heatmap. If
-#'   `character(0)` (default), the heatmap will be displayed instead.
-#' @param height numeric; height of the file in `units`.
-#' @param width same as `height`.
-#' @param units character; units that define `height` and `width`. Defaults to
-#'   "in" (inches).
+#'   \code{character(0)} (default), the heatmap will be displayed instead.
+#' @param height numeric; height of the file in \code{units}.
+#' @param width same as \code{height}.
+#' @param units character; units that define \code{height} and \code{width}.
+#'   Defaults to "in" (inches).
 #' @param heatmap_args list; additional arguments passed to
 #'   \code{\link[ComplexHeatmap]{Heatmap}}.
 #' @param padj_args list; additional arguments passed to
@@ -51,8 +54,6 @@
 #'   See \code{\link[grDevices]{png}} for options.
 #' @param draw_args list; additional arguments passed to
 #'   \code{\link[ComplexHeatmap]{draw-HeatmapList-method}}.
-#'
-#' @md
 #'
 #' @import ComplexHeatmap
 #' @importFrom circlize colorRamp2
