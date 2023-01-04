@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # motrpacWAT
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A collection of functions for the analysis and visualization of the MoTrPAC PASS1B white adipose tissue (WAT) data as provided in the <a href="https://motrpac.github.io/MotrpacRatTraining6moData/index.html">`MotrpacRatTraining6moData`</a> package. This package was built specifically to generate the `motrpacWATData` package, so much of it is tailored only for use with those datasets, though users may find some of the functionality contained herein to be useful in other projects:

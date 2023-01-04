@@ -4,6 +4,8 @@
 # motrpacWAT
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A collection of functions for the analysis and visualization of the
@@ -14,20 +16,20 @@ package. This package was built specifically to generate the
 those datasets, though users may find some of the functionality
 contained herein to be useful in other projects:
 
--   Differential analysis (DA) with the
-    <a href="https://bioconductor.org/packages/release/bioc/html/limma.html">`limma`</a>
-    and
-    <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">`edgeR`</a>
-    packages
--   Volcano plots
--   Fast Gene Set Enrichment Analysis (FGSEA) with
-    <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html">`fgsea`</a>
-    and
-    <a href="https://cran.r-project.org/web/packages/msigdbr/index.html">`msigdbr`</a>
--   Kinase-Substrate Enrichment Analysis (KSEA) with
-    <a href="https://www.phosphosite.org/homeAction.action">PhosphoSitePlus</a>
--   Over-representation analysis (ORA)
--   Weighted Gene Co-expression Network Analysis (WGCNA)
+- Differential analysis (DA) with the
+  <a href="https://bioconductor.org/packages/release/bioc/html/limma.html">`limma`</a>
+  and
+  <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">`edgeR`</a>
+  packages
+- Volcano plots
+- Fast Gene Set Enrichment Analysis (FGSEA) with
+  <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html">`fgsea`</a>
+  and
+  <a href="https://cran.r-project.org/web/packages/msigdbr/index.html">`msigdbr`</a>
+- Kinase-Substrate Enrichment Analysis (KSEA) with
+  <a href="https://www.phosphosite.org/homeAction.action">PhosphoSitePlus</a>
+- Over-representation analysis (ORA)
+- Weighted Gene Co-expression Network Analysis (WGCNA)
 
 ## Installation
 
