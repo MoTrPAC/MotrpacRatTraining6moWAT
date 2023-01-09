@@ -18,7 +18,7 @@ plot_analyte <- function(x, analyte = "")
     stat_summary(fun.data = ~ exp(mean_se(log(.x))),
                  show.legend = FALSE,
                  geom = "crossbar", width = 0.8,
-                 na.rm = TRUE, fatten = 1, size = 0.4) +
+                 na.rm = TRUE, fatten = 1, linewidth = 0.4) +
     scale_color_manual(values = c("#ff6eff", "#5555ff"),
                        breaks = c("Female", "Male")) +
     guides(color = NULL) +
@@ -26,7 +26,7 @@ plot_analyte <- function(x, analyte = "")
     facet_wrap(~ sex, scales = "free_x") +
     scale_x_discrete(name = NULL) +
     theme_pub() +
-    theme(panel.grid = element_blank(),
+    theme(panel.grid = element_line(color = NULL),
           axis.ticks.x = element_blank(),
           axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
           axis.title.y = element_text(margin = margin(r = 2.5,

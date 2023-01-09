@@ -23,14 +23,9 @@ plot_eigenfeature <- function(x)
   x <- as.data.table(x$MEs)
   x <- subset(x, subset = moduleNum != 0) # remove grey module
   x <- merge(x, mod_size, by = "moduleID", all.x = TRUE, all.y = FALSE)
-  # x <- subset(x, subset = moduleColor != "grey")
   x[, moduleID := droplevels(moduleID)]
-  # x[, `:=` (sex = factor(sex, levels = sort(unique(sex)),
-  #                        labels = c("F", "M")),
-  #           timepoint = factor(timepoint,
-  #                              levels = c("SED", paste0(2^(0:3), "W"))))]
 
-  ## Combine plots
+  # Combine plots
   plotlist <- lapply(levels(x$moduleID), function(mod_i) {
     xi <- subset(x, moduleID == mod_i)
 
@@ -42,34 +37,25 @@ plot_eigenfeature <- function(x)
                    fun.args = list(mult = 1),
                    mapping = aes(color = sex),
                    geom = "crossbar", width = 0.7,
-                   fatten = 1, size = 0.5) +
+                   fatten = 1, linewidth = 0.5) +
       geom_point(size = 0.4, color = "black", shape = 16,
-                 position = position_beeswarm(cex = 3, groupOnX = TRUE,
-                                              dodge.width = 0.34)) +
+                 position = position_beeswarm(cex = 3, dodge.width = 0.34)) +
       facet_wrap(~ sex, nrow = 1) +
       labs(title = sprintf("%s (n = %d)", mod_i, mod_i_size),
            y = NULL, x = NULL) +
       scale_color_manual(name = "Sex",
                          values = c("#ff6eff", "#5555ff")) +
       scale_y_continuous(breaks = breaks_extended()) +
-      # theme_bw() +
       theme_pub() +
-      theme(# axis.title = element_text(size = 6, color = "black"),
-            # axis.text = element_text(size = 5, color = "black"),
-            # axis.line = element_line(color = "black", size = 0.3),
-            # axis.ticks = element_line(color = "black", size = 0.3),
-            # panel.grid.major.y = element_line(size = 0.3),
+      theme(panel.grid.major.y = element_line(linewidth = 0),
+            panel.grid.minor.y = element_line(linewidth = 0),
             panel.grid.major.x = element_blank(),
             axis.ticks.x = element_blank(),
-            # plot.title = element_text(size = 6.5),
             axis.text.x = element_text(angle = 90,
                                        hjust = 1, vjust = 0.5,
                                        margin = margin(t = 0)),
             panel.spacing = unit(0, "points"),
             strip.text = element_blank(),
-            # panel.border = element_blank(),
-            # legend.title = element_text(color = "black", size = 6),
-            # legend.text = element_text(color = "black", size = 5),
             plot.margin = unit(rep(3, 4), units = "pt")
       )
   })

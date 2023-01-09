@@ -27,9 +27,10 @@ plot_volcano <- function(x,
   setDT(x)
 
   p <- ggplot(x, aes(x = logFC, y = log10_pval)) +
-    geom_point(aes(color = sign_logFC), alpha = 0.5, size = 3) +
+    geom_point(aes(color = sign_logFC),
+               alpha = 0.5, size = 1, shape = 16) +
     scale_x_continuous(
-      limits = range(x[["logFC"]], na.rm = T)*1.1,
+      limits = range(x[["logFC"]], na.rm = T) * 1.1,
       expand = expansion(mult = 0),
       breaks = scales::extended_breaks(n = 5)
     ) +
@@ -37,8 +38,9 @@ plot_volcano <- function(x,
     theme(axis.line.y.right = element_blank(),
           strip.background = element_blank(),
           strip.text = element_text(hjust = 0,
-                                    margin = margin(t=0, r=0, b=5, l=0)),
-          legend.position = "none")
+                                    margin = margin(t=0, r=0, b=10, l=0)),
+          legend.position = "none",
+          panel.grid = element_line(linewidth = 0))
 
   # y-axis limits
   y_lims <- range_extend(x[["log10_pval"]], nearest = 1)
@@ -49,12 +51,12 @@ plot_volcano <- function(x,
   # Horizontal line and secondary axis for p-value cutoff
   p <- p +
     geom_hline(yintercept = -log10(pval_cutoff),
-               size = 0.3,
+               linewidth = 0.3,
                lty = "dashed") +
     scale_y_continuous(
       breaks = scales::extended_breaks(n = 5),
       limits = y_lims,
-      sec.axis = sec_axis(trans = ~ 10^(-.),
+      sec.axis = sec_axis(trans = ~ 10 ^ (-.),
                           breaks = pval_cutoff),
       expand = expansion(mult = c(0.01, 0.1))
     ) +
@@ -69,7 +71,8 @@ plot_volcano <- function(x,
                size = 5 * 0.35, label.size = NA,
                label.padding = unit(4, "pt"),
                fill = alpha("white", 0.5),
-               hjust = 0, vjust = 0) +
+               # label.r = unit(1.5, "pt"),
+               hjust = 0.05, vjust = 0) +
     coord_cartesian(clip = "off")
 
   return(p)

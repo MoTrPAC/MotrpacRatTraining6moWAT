@@ -14,6 +14,7 @@ theme_pub <- function() {
       text = element_text(size = 6, color = "black"),
       axis.title = element_text(size = 6, color = "black"),
       axis.text = element_text(size = 5, color = "black"),
+      axis.text.y.right = element_text(size = 5, color = "black"),
       axis.line = element_line(size = 0.3, color = "black"),
       axis.ticks = element_line(size = 0.3, color = "black"),
 
