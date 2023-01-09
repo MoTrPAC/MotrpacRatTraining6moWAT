@@ -11,5 +11,5 @@ plot_eigenfeature(x)
 }
 \description{
 Create scatterplots of each module eigenfeature (principal
-  eigenvectors).
+eigenvectors).
 }

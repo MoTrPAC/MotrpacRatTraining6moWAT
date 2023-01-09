@@ -17,12 +17,35 @@
 #'   based on plots that the function creates. Must be provided if session is
 #'   not interactive.
 #'
-#' @returns Object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}} with
-#'   modified \code{pData} and \code{fData}. The \code{pData} will include
-#'   columns for each of the module eigenfeatures (prefixed with "ME" and
-#'   followed by a color), while the \code{fData} will include columns
-#'   "moduleColor" and "moduleID" that specify the modules to which each feature
-#'   belongs. Features from the "grey" module should be ignored.
+#' @returns Object of class \code{list} of length 2:
+#'
+#' \itemize{
+#'   \item "modules": a \code{data.frame} with the following columns, in
+#'   addition to all columns in \code{MSnbase::fData(object)}.
+#'     \describe{
+#'       \item{moduleColor}{moduleColor; unique color assigned to each module.
+#'       The "grey" module always contains features that are not co-expressed.}
+#'       \item{moduleID}{factor; \code{module_prefix} followed by a unique
+#'       module number. The "grey" module is always 0.}
+#'     }
+#'   \item "MEs": a \code{data.frame} with 6 variables.
+#'     \describe{
+#'       \item{\code{bid}}{integer; unique 5 digit identifier of all samples
+#'       collected for an acute test/sample collection period. All samples
+#'       collected during that period will have the same BID.}
+#'       \item{\code{sex}}{factor; the sex of the rat with levels "Female" and
+#'       "Male".}
+#'       \item{\code{timepoint}}{factor; exercise training group. Either "SED"
+#'       (sedentary) or the number of weeks of training ("1W", "2W", "4W",
+#'       "8W").}
+#'       \item{\code{moduleID}}{factor; \code{module_prefix} followed by a
+#'       unique module number. The "grey" module is always 0.}
+#'       \item{\code{ME}}{numeric; module eigenfeature values. One per sample x
+#'       module combination.}
+#'       \item{\code{moduleNum}}{integer; unique module ID number. The "grey"
+#'       module is always 0.}
+#'     }
+#' }
 #'
 #' @importFrom MSnbase exprs pData fData `fData<-` `pData<-` featureNames
 #' @importFrom WGCNA pickSoftThreshold adjacency TOMsimilarity labels2colors
@@ -35,7 +58,7 @@
 #'
 #' @export run_WGCNA
 #'
-#' @author Tyler Sagendorf, Zhenxin Hou
+#' @author Zhenxin Hou, Tyler Sagendorf
 #'
 #' @references Zhang, B., & Horvath, S. (2005). A general framework for weighted
 #'   gene co-expression network analysis. \emph{Statistical applications in

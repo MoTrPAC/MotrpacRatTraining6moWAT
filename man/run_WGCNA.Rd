@@ -33,38 +33,61 @@ based on plots that the function creates. Must be provided if session is
 not interactive.}
 }
 \value{
-Object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}} with
-  modified \code{pData} and \code{fData}. The \code{pData} will include
-  columns for each of the module eigenfeatures (prefixed with "ME" and
-  followed by a color), while the \code{fData} will include columns
-  "moduleColor" and "moduleID" that specify the modules to which each feature
-  belongs. Features from the "grey" module should be ignored.
+Object of class \code{list} of length 2:
+
+\itemize{
+\item "modules": a \code{data.frame} with the following columns, in
+addition to all columns in \code{MSnbase::fData(object)}.
+\describe{
+\item{moduleColor}{moduleColor; unique color assigned to each module.
+The "grey" module always contains features that are not co-expressed.}
+\item{moduleID}{factor; \code{module_prefix} followed by a unique
+module number. The "grey" module is always 0.}
+}
+\item "MEs": a \code{data.frame} with 6 variables.
+\describe{
+\item{\code{bid}}{integer; unique 5 digit identifier of all samples
+collected for an acute test/sample collection period. All samples
+collected during that period will have the same BID.}
+\item{\code{sex}}{factor; the sex of the rat with levels "Female" and
+"Male".}
+\item{\code{timepoint}}{factor; exercise training group. Either "SED"
+(sedentary) or the number of weeks of training ("1W", "2W", "4W",
+"8W").}
+\item{\code{moduleID}}{factor; \code{module_prefix} followed by a
+unique module number. The "grey" module is always 0.}
+\item{\code{ME}}{numeric; module eigenfeature values. One per sample x
+module combination.}
+\item{\code{moduleNum}}{integer; unique module ID number. The "grey"
+module is always 0.}
+}
+}
 }
 \description{
 Run the WGCNA pipeline used in the WAT manuscript.
 }
 \references{
 Zhang, B., & Horvath, S. (2005). A general framework for weighted
-  gene co-expression network analysis. \emph{Statistical applications in
-  genetics and molecular biology, 4}, Article17.
-  \url{https://doi.org/10.2202/1544-6115.1128}
+gene co-expression network analysis. \emph{Statistical applications in
+genetics and molecular biology, 4}, Article17.
+\url{https://doi.org/10.2202/1544-6115.1128}
 
-  Langfelder P and Horvath S, WGCNA: an R package for weighted correlation
-  network analysis. BMC Bioinformatics 2008, 9:559
-  \url{https://doi.org/10.1186/1471-2105-9-559}
+Langfelder P and Horvath S, WGCNA: an R package for weighted correlation
+network analysis. BMC Bioinformatics 2008, 9:559
+\url{https://doi.org/10.1186/1471-2105-9-559}
 
-  Peter Langfelder, Steve Horvath (2012). Fast R Functions for Robust
-  Correlations and Hierarchical Clustering. \emph{Journal of Statistical
-  Software, 46}(11), 1--17. \url{http://www.jstatsoft.org/v46/i11/}
+Peter Langfelder, Steve Horvath (2012). Fast R Functions for Robust
+Correlations and Hierarchical Clustering. \emph{Journal of Statistical
+Software, 46}(11), 1--17. \url{http://www.jstatsoft.org/v46/i11/}
 
-  Horvath, S. (2011). Weighted Network Analysis. \emph{Springer New York}.
-  \url{https://doi.org/10.1007/978-1-4419-8819-5}
+Horvath, S. (2011). Weighted Network Analysis. \emph{Springer New York}.
+\url{https://doi.org/10.1007/978-1-4419-8819-5}
 
-  Langfelder P, Zhang B, Horvath wcfS (2016). \emph{dynamicTreeCut: Methods
-  for Detection of Clusters in Hierarchical Clustering Dendrograms}. R
-  package version 1.63-1,
-  \url{https://CRAN.R-project.org/package=dynamicTreeCut}.
+Langfelder P, Zhang B, Horvath wcfS (2016). \emph{dynamicTreeCut: Methods
+for Detection of Clusters in Hierarchical Clustering Dendrograms}. R
+package version 1.63-1,
+\url{https://CRAN.R-project.org/package=dynamicTreeCut}.
 }
 \author{
-Tyler Sagendorf, Zhenxin Hou
+Zhenxin Hou, Tyler Sagendorf
 }

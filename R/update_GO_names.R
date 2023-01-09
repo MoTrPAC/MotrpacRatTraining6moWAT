@@ -5,10 +5,10 @@
 #'   \href{http://geneontology.org/}{Gene Ontology Consortium}.
 #'
 #' @param x object of class \code{data.frame} produced by
-#'   \code{link[msigdbr]{msigdbr}} or \code{\link{msigdbr2}} containing columns
-#'   \code{gs_description} and \code{gs_subcat}.
-#' @param version character string specifying the version of \code{msigdbr} to
-#'   use. Defaults to the current version.
+#'   \code{link[msigdbr]{msigdbr}} or \code{\link[motrpacWAT]{msigdbr}}
+#'   containing columns \code{gs_description} and \code{gs_subcat}.
+#' @param version character; specifies the version of \code{msigdbr} to use.
+#'   Defaults to the current version.
 #' @param capitalize logical; whether to capitalize the first letter of each
 #'   description if the first word does not contain a mix of capital and
 #'   lowercase letters. Improves appearance of plots, such as those produced by
@@ -21,17 +21,13 @@
 #'   on" is present in the MSigDB release notes for that version and is followed
 #'   by a date.
 #'
-#' @importFrom data.table setDT setDF setkeyv `:=`
-#' @importFrom ontologyIndex get_OBO
-#' @importFrom utils head packageVersion
-#'
-#' @export update_GO_names
+#' @md
 #'
 #' @author Tyler Sagendorf
 #'
 #' @seealso
 #' \href{https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Release_Notes}{MSigDB
-#' Release Notes} \href{http://release.geneontology.org/}{Gene Ontology Data
+#' Release Notes}, \href{http://release.geneontology.org/}{Gene Ontology Data
 #' Archive}
 #'
 #' @references Ashburner, M., et al. (2000). Gene ontology: tool for the
@@ -42,14 +38,23 @@
 #'   GOld mine. \emph{Nucleic acids research, 49}(D1), D325--D334.
 #'   \url{https://doi.org/10.1093/nar/gkaa1113}
 #'
+#' @importFrom data.table setDT setDF setkeyv `:=`
+#' @importFrom ontologyIndex get_OBO
+#' @importFrom utils head packageVersion
+#'
+#' @export update_GO_names
+#'
 #' @examples
 #' x <- msigdbr2(species = "Homo sapiens",
 #'               genes = "gene_symbol",
 #'               gs_subcat = "GO:MF")
-#' tail(x$gs_description) # before
+#' set.seed(9900)
+#' idx <- sample(1:nrow(x), size = 6)
+#' x$gs_description[idx] # before
 #'
-#' x <- update_GO_names(x)
-#' tail(x$gs_description) # after
+#' y <- update_GO_names(x, capitalize = TRUE)
+#' y$gs_description[idx] # after
+
 
 update_GO_names <- function(x,
                             version = packageVersion("msigdbr"),

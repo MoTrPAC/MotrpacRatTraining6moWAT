@@ -14,13 +14,13 @@ value specified by \code{nearest}. Default is 1.}
 }
 \value{
 A \code{\link[base]{numeric}} vector of length 2 specifying the
-  range of values after rounding outward to the value provided by
-  \code{nearest}.
+range of values after rounding outward to the value provided by
+\code{nearest}.
 }
 \description{
 \code{range_extend} returns a vector containing the minimum and
-  maximum of all the given arguments rounded outward to the value provided by
-  \code{nearest}.
+maximum of all the given arguments rounded outward to the value provided by
+\code{nearest}.
 }
 \examples{
 set.seed(0)

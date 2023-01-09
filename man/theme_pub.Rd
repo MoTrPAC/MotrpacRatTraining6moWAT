@@ -8,6 +8,6 @@ theme_pub()
 }
 \description{
 Theme used extensively by the plotting functions of this
-  package, as well as to generate final plots for the associated publication.
-  Built to adhere to the Nature publishing guidelines.
+package, as well as to generate final plots for the associated publication.
+Built to adhere to the Nature publishing guidelines.
 }

@@ -21,5 +21,5 @@ A \code{ggplot2} object.
 }
 \description{
 Create p-value histograms with
-  \code{\link[ggplot2]{ggplot2-package}}.
+\code{\link[ggplot2]{ggplot2-package}}.
 }

@@ -79,62 +79,62 @@ for more information.}
 }
 \value{
 \code{data.frame}. Output of \code{\link[limma]{topTable}} with
-  additional columns \code{feature}, \code{contrast}, and column(s) for the
-  standard error (se) of the logFC. All columns from \code{fData} are also
-  included.
+additional columns \code{feature}, \code{contrast}, and column(s) for the
+standard error (se) of the logFC. All columns from \code{fData} are also
+included.
 }
 \description{
 A convenience wrapper for differential analysis with LIMMA.
-  Performs moderated t-tests, F-tests, or linear regression.
+Performs moderated t-tests, F-tests, or linear regression.
 }
 \details{
 An MDS plot (produced by \code{\link[limma]{plotMDS}}) is used to
-  determine the appropriate value of \code{var.group}. If samples within
-  phenotype groups tend to cluster well and have similar dispersions, the
-  default \code{var.group = character(0)} is recommended. If samples within
-  phenotype groups tend to cluster well, but different groups are more or
-  less dispersed, it may be beneficial to set \code{var.group} to the name of
-  the phenotype column. If one or more samples tend to cluster poorly with
-  samples of the same phenotype, it may be beneficial to weight by sample.
-  That is, set \code{var.group} to the name of the column in
-  \code{pData(object)} that uniquely identifies each sample. If variation
-  between samples or groups of samples is biological rather than technical,
-  weighting is not recommended.
+determine the appropriate value of \code{var.group}. If samples within
+phenotype groups tend to cluster well and have similar dispersions, the
+default \code{var.group = character(0)} is recommended. If samples within
+phenotype groups tend to cluster well, but different groups are more or
+less dispersed, it may be beneficial to set \code{var.group} to the name of
+the phenotype column. If one or more samples tend to cluster poorly with
+samples of the same phenotype, it may be beneficial to weight by sample.
+That is, set \code{var.group} to the name of the column in
+\code{pData(object)} that uniquely identifies each sample. If variation
+between samples or groups of samples is biological rather than technical,
+weighting is not recommended.
 
-  The plot of the mean-variance trend helps determine whether to fit a trend
-  line to the prior variance (default is \code{trend = TRUE}). It also helps
-  determine if the prior variance should be robustified against outlier
-  sample variances (\code{robust = TRUE}). See \code{\link[limma]{eBayes}}
-  for more details.
+The plot of the mean-variance trend helps determine whether to fit a trend
+line to the prior variance (default is \code{trend = TRUE}). It also helps
+determine if the prior variance should be robustified against outlier
+sample variances (\code{robust = TRUE}). See \code{\link[limma]{eBayes}}
+for more details.
 }
 \references{
 Smyth G. K. (2004). Linear models and empirical bayes methods for
-  assessing differential expression in microarray experiments.
-  \emph{Statistical applications in genetics and molecular biology, 3},
-  Article3. \url{https://doi.org/10.2202/1544-6115.1027}
+assessing differential expression in microarray experiments.
+\emph{Statistical applications in genetics and molecular biology, 3},
+Article3. \url{https://doi.org/10.2202/1544-6115.1027}
 
-  Smyth, G. K., Michaud, J., and Scott, H. (2005). The use of within-array
-  replicate spots for assessing differential expression in microarray
-  experiments. \emph{Bioinformatics 21}(9), 2067--2075.
-  \url{http://bioinformatics.oxfordjournals.org/content/21/9/2067} Preprint
-  with corrections: \url{http://www.statsci.org/smyth/pubs/dupcor.pdf}
+Smyth, G. K., Michaud, J., and Scott, H. (2005). The use of within-array
+replicate spots for assessing differential expression in microarray
+experiments. \emph{Bioinformatics 21}(9), 2067--2075.
+\url{http://bioinformatics.oxfordjournals.org/content/21/9/2067} Preprint
+with corrections: \url{http://www.statsci.org/smyth/pubs/dupcor.pdf}
 
-  Liu, R., Holik, A. Z., Su, S., Jansz, N., Chen, K., Leong, H. S., Blewitt,
-  M. E., Asselin-Labat, M. L., Smyth, G. K., & Ritchie, M. E. (2015). Why
-  weight? Modelling sample and observational level variability improves power
-  in RNA-seq analyses. \emph{Nucleic acids research, 43}(15), e97.
-  \url{https://doi.org/10.1093/nar/gkv412}
+Liu, R., Holik, A. Z., Su, S., Jansz, N., Chen, K., Leong, H. S., Blewitt,
+M. E., Asselin-Labat, M. L., Smyth, G. K., & Ritchie, M. E. (2015). Why
+weight? Modelling sample and observational level variability improves power
+in RNA-seq analyses. \emph{Nucleic acids research, 43}(15), e97.
+\url{https://doi.org/10.1093/nar/gkv412}
 
-  Law, C. W., Alhamdoosh, M., Su, S., Dong, X., Tian, L., Smyth, G. K., &
-  Ritchie, M. E. (2016). RNA-seq analysis is easy as 1-2-3 with limma, Glimma
-  and edgeR. \emph{F1000Research, 5}, ISCB Comm J-1408.
-  \url{https://doi.org/10.12688/f1000research.9005.3}
+Law, C. W., Alhamdoosh, M., Su, S., Dong, X., Tian, L., Smyth, G. K., &
+Ritchie, M. E. (2016). RNA-seq analysis is easy as 1-2-3 with limma, Glimma
+and edgeR. \emph{F1000Research, 5}, ISCB Comm J-1408.
+\url{https://doi.org/10.12688/f1000research.9005.3}
 
-  Phipson, B., Lee, S., Majewski, I. J., Alexander, W. S., & Smyth, G. K.
-  (2016). ROBUST HYPERPARAMETER ESTIMATION PROTECTS AGAINST HYPERVARIABLE
-  GENES AND IMPROVES POWER TO DETECT DIFFERENTIAL EXPRESSION. \emph{The
-  annals of applied statistics, 10}(2), 946--963.
-  \url{https://doi.org/10.1214/16-AOAS920}
+Phipson, B., Lee, S., Majewski, I. J., Alexander, W. S., & Smyth, G. K.
+(2016). ROBUST HYPERPARAMETER ESTIMATION PROTECTS AGAINST HYPERVARIABLE
+GENES AND IMPROVES POWER TO DETECT DIFFERENTIAL EXPRESSION. \emph{The
+annals of applied statistics, 10}(2), 946--963.
+\url{https://doi.org/10.1214/16-AOAS920}
 }
 \seealso{
 \href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA

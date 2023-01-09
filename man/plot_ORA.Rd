@@ -8,7 +8,7 @@ plot_ORA(
   x,
   n_terms = 5,
   mods = 1:5,
-  gs_subcat = "GO:MF",
+  subset = "GO:MF",
   rel_heights = c(0.8, 0.2)
 )
 }
@@ -21,7 +21,7 @@ display from each module.}
 \item{mods}{integer; the module numbers to include in the plot. By default,
 terms from modules 1-5 (the 5 largest modules) are shown.}
 
-\item{gs_subcat}{character; the gene set subcategory of terms to plot.
+\item{subset}{character; the gene set subcategory of terms to plot.
 Default is "GO:MF".}
 
 \item{rel_heights}{numeric; vector of length 2 specifying the relative

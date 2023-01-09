@@ -4,8 +4,9 @@
 #'   data for use with \code{\link{fgsea2}}.
 #'
 #' @param species character; scientific or common name of species. Default is
-#'   "Homo sapiens". \code{\link[msigdbr]{msigdbr_species}} displays all
-#'   possible choices.
+#'   "Homo sapiens".
+#'   \code{\link[msigdbr:msigdbr_species]{msigdbr::msigdbr_species}} displays
+#'   all possible choices.
 #' @param genes character; type of gene ID to fetch. Options are "gene_symbol",
 #'   "entrez_gene", and "ensembl_gene".
 #' @param gs_subcat character vector of one or more MSigDB subcategories. See

@@ -68,8 +68,8 @@ fora2 <- function(pathways,
   # Transform p-values to account for overlap ratio
   if (adjust.method == "scale") {
     res[, maxOverlap := max(overlap), by = by]
-    res[, overlapRatio := overlap/maxOverlap]
-    res[, padj := 10^(log10(pval)*overlapRatio)]
+    res[, overlapRatio := overlap / maxOverlap]
+    res[, padj := 10^(log10(pval) * overlapRatio)]
   } else {
     res[, padj := p.adjust(pval, method = adjust.method), by = by]
   }
