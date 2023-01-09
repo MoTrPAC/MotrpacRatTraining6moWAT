@@ -8,12 +8,24 @@
 \description{
 A collection of functions for the analysis and visualization of the MoTrPAC PASS1B training study rat white adipose tissue (WAT) data.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://pnnl-comp-mass-spec.github.io/motrpacWAT/}
+  \item \url{https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/}
+}
+
+}
 \author{
 \strong{Maintainer}: Tyler Sagendorf \email{tyler.sagendorf@pnnl.gov} (\href{https://orcid.org/0000-0003-1552-4870}{ORCID})
 
+Authors:
+\itemize{
+  \item Zhenxin Hou (\href{https://orcid.org/0000-0002-1301-0799}{ORCID}) (Provided WGCNA-related code.)
+}
+
 Other contributors:
 \itemize{
-  \item Zhenxin Hou (\href{https://orcid.org/0000-0002-1301-0799}{ORCID}) (Provided WGCNA-related code.) [contributor]
   \item Vladislav Petyuk (\href{https://orcid.org/0000-0003-4076-151X}{ORCID}) [contributor]
 }
 

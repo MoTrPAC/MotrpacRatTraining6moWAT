@@ -1,7 +1,7 @@
 Package: motrpacWAT
 Type: Package
 Title: Helper Functions for the motrpacWATData Package
-Version: 0.1.0
+Version: 0.0.0.9000
 Authors@R: 
     c(
     person(given = "Tyler", family = "Sagendorf", 
@@ -11,7 +11,7 @@ Authors@R:
     person(given = "Zhenxin", family = "Hou",
            comment = c(ORCID = "0000-0002-1301-0799",
                        "Provided WGCNA-related code."),
-           role = "ctb"),
+           role = "aut"),
     person(given = "Vladislav", family = "Petyuk",
            comment = c(ORCID = "0000-0003-4076-151X"),
            role = "ctb")
@@ -47,4 +47,7 @@ Imports:
     utils,
     WGCNA
 RoxygenNote: 7.2.3
-URL: https://pnnl-comp-mass-spec.github.io/motrpacWAT/
+Roxygen: list(markdown = TRUE)
+URL: 
+    https://pnnl-comp-mass-spec.github.io/motrpacWAT/, 
+    https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/
