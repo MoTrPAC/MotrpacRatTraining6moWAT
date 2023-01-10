@@ -30,8 +30,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          dependencies: '"hard"'
-          extra-packages: any::pkgdown, local::.
+          dependencies: '"soft"'
+          extra-packages: any::XML, any::pkgdown, local::.
           needs: website
           pak-version: devel
 
