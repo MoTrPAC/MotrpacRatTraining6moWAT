@@ -19,14 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Tyler Sagendorf \email{tyler.sagendorf@pnnl.gov} (\href{https://orcid.org/0000-0003-1552-4870}{ORCID})
 
-Authors:
-\itemize{
-  \item Zhenxin Hou (\href{https://orcid.org/0000-0002-1301-0799}{ORCID}) (Provided WGCNA-related code.)
-}
-
 Other contributors:
 \itemize{
-  \item Vladislav Petyuk (\href{https://orcid.org/0000-0003-4076-151X}{ORCID}) [contributor]
+  \item Zhenxin Hou (\href{https://orcid.org/0000-0002-1301-0799}{ORCID}) (Provided WGCNA-related code.) [contributor]
+  \item Vladislav Petyuk (\href{https://orcid.org/0000-0003-4076-151X}{ORCID}) (Provided foundation for limma_full function.) [contributor]
 }
 
 }
