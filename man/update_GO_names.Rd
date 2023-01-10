@@ -9,7 +9,7 @@ update_GO_names(x, version = packageVersion("msigdbr"), capitalize = FALSE)
 \arguments{
 \item{x}{object of class \code{data.frame} produced by
 \code{link[msigdbr]{msigdbr}} or
-\code{\link[MotrpacRatTraining6moWAT]{msigdbr}} containing columns
+\code{\link[MotrpacRatTraining6moWAT]{msigdbr2}} containing columns
 \code{gs_description} and \code{gs_subcat}.}
 
 \item{version}{character; specifies the version of \code{msigdbr} to use.

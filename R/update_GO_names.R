@@ -6,7 +6,7 @@
 #'
 #' @param x object of class \code{data.frame} produced by
 #'   \code{link[msigdbr]{msigdbr}} or
-#'   \code{\link[MotrpacRatTraining6moWAT]{msigdbr}} containing columns
+#'   \code{\link[MotrpacRatTraining6moWAT]{msigdbr2}} containing columns
 #'   \code{gs_description} and \code{gs_subcat}.
 #' @param version character; specifies the version of \code{msigdbr} to use.
 #'   Defaults to the current version.

@@ -10,8 +10,9 @@ label_signif(pvals)
 \item{pvals}{numeric; vector of p-values.}
 }
 \value{
-character vector of labels: p > 0.05 = "", 0.01 <= p < 0.05 = "\\emph{",
-0.001 <= p < 0.01 = "\}\\emph{", p < 0.001 = "\}\\emph{\}"
+character vector of labels: p \eqn{>} 0.05 = "", 0.01 \eqn{\leq} p
+  \eqn{<} 0.05 = "*", 0.001 \eqn{\leq} p \eqn{<} 0.01 = "**", p \eqn{<} 0.001
+  = "***"
 }
 \description{
 Use asterisks to indicate level of statistical significance.
