@@ -1,6 +1,6 @@
-Package: motrpacWAT
+Package: MotrpacRatTraining6moWAT
 Type: Package
-Title: Helper Functions for the motrpacWATData Package
+Title: Helper Functions for the MotrpacRatTraining6moWATData Package
 Version: 0.0.0.9000
 Authors@R: 
     c(
@@ -50,5 +50,5 @@ Imports:
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 URL: 
-    https://pnnl-comp-mass-spec.github.io/motrpacWAT/, 
-    https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/
+    https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/, 
+    https://github.com/PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT/

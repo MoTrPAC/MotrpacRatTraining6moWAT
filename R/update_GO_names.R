@@ -5,8 +5,9 @@
 #'   \href{http://geneontology.org/}{Gene Ontology Consortium}.
 #'
 #' @param x object of class \code{data.frame} produced by
-#'   \code{link[msigdbr]{msigdbr}} or \code{\link[motrpacWAT]{msigdbr}}
-#'   containing columns \code{gs_description} and \code{gs_subcat}.
+#'   \code{link[msigdbr]{msigdbr}} or
+#'   \code{\link[MotrpacRatTraining6moWAT]{msigdbr}} containing columns
+#'   \code{gs_description} and \code{gs_subcat}.
 #' @param version character; specifies the version of \code{msigdbr} to use.
 #'   Defaults to the current version.
 #' @param capitalize logical; whether to capitalize the first letter of each

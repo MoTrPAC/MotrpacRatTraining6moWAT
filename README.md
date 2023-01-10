@@ -1,18 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# motrpacWAT
+# MotrpacRatTraining6moWAT
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PNNL-Comp-Mass-Spec/motrpacWAT/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A collection of functions for the analysis and visualization of the
 MoTrPAC PASS1B white adipose tissue (WAT) data as provided in the
 <a href="https://motrpac.github.io/MotrpacRatTraining6moData/index.html">`MotrpacRatTraining6moData`</a>
 package. This package was built specifically to generate the
-`motrpacWATData` package, so much of it is tailored only for use with
+`MotrpacRatTraining6moWATData` package, so much of it is tailored only for use with
 those datasets, though users may find some of the functionality
 contained herein to be useful in other projects:
 
@@ -39,5 +39,5 @@ Install this package with `devtools`:
 if (!require("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
-devtools::install_github("PNNL-Comp-Mass-Spec/motrpacWAT")
+devtools::install_github("PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT")
 ```
