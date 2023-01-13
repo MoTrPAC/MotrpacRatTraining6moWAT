@@ -15,7 +15,7 @@
 #'
 #' @returns A \code{\link[data.table]{data.table}} with columns
 #'   "gs_exact_source" (term ID), "gs_subcat" (subcategory), "gs_description"
-#'   (term description), and a list column of gene IDs specified by
+#'   (term description), and a list-column of gene IDs specified by
 #'   \code{genes}.
 #'
 #' @importFrom data.table rbindlist `.SD` `:=` setnames setDF
@@ -34,6 +34,7 @@
 #'   \url{https:://igordot.github.io/msigdbr}
 #'
 #' @examples
+#' # Reactome pathways and GO Molecular Functions:
 #' x <- msigdbr2(species = "rat",
 #'               genes = "gene_symbol",
 #'               gs_subcat = c("CP:REACTOME", "GO:MF"))
@@ -48,8 +49,10 @@ msigdbr2 <- function(species = "Homo sapiens",
   # Check that all gs_subcat are valid
   for (i in seq_along(gs_subcat)) {
     if (!(gs_subcat[i] %in% mcol$gs_subcat)) {
-      stop(paste0(gs_subcat[i],
-                  " is not a valid subcategory. See ?msigdbr_collections."))
+      stop(paste0(
+        gs_subcat[i],
+        " is not a valid subcategory. See ?msigdbr::msigdbr_collections."
+      ))
     }
   }
 

@@ -94,27 +94,26 @@ enrichmat <- function(x,
   scale_by <- match.arg(scale_by, scale_by)
 
   # Filter to n_top
-  cols_to_keep <- c(rownames_column, padj_column,
-                    NES_column, "contrast")
+  cols_to_keep <- c(rownames_column, padj_column, NES_column, "contrast")
 
   # Check that all required columns are present
   col_present <- cols_to_keep %in% colnames(x)
   if (any(!col_present)) {
     missing_cols <- cols_to_keep[!col_present]
-    stop(sprintf("Missing columns: %s",
-                 paste(missing_cols, collapse = ", ")))
+    stop(sprintf("Missing columns: %s", paste(missing_cols, collapse = ", ")))
   }
 
   setDT(x)
+
   x[, `:=` (any_sig = any(get(padj_column) < padj_cutoff),
             criteria = max(-log10(get(padj_column)),
                            na.rm = TRUE)),
     by = rownames_column]
-  setorderv(x, cols = c("contrast", "criteria"),
-            order = c(1, -1))
+
+  setorderv(x, cols = c("contrast", "criteria"), order = c(1, -1))
+
   if (is.null(top_pathways)) {
-    top_pathways <- head(unique(x[, get(rownames_column)]),
-                         n = n_top)
+    top_pathways <- head(unique(x[, get(rownames_column)]), n = n_top)
   }
   x <- subset(x, get(rownames_column) %in% top_pathways)
 
@@ -156,7 +155,7 @@ enrichmat <- function(x,
       title = NES_column,
       at = colorRamp2_args$breaks,
       border = "black",
-      legend_height = max(cell_size*5, unit(21.1, "mm")),
+      legend_height = max(cell_size * 5, unit(21.1, "mm")),
       grid_width = max(cell_size, unit(4, "mm"))
     ),
     border = TRUE,
@@ -202,17 +201,15 @@ enrichmat <- function(x,
     grid_width = heatmap_args$heatmap_legend_param$grid_width,
     border = "black", nrow = 2, direction = "horizontal"
   )
-  lt_args <- modifyList(x = lt_args, val = padj_args,
-                        keep.null = TRUE)
+  lt_args <- modifyList(x = lt_args, val = padj_args, keep.null = TRUE)
 
   lt <- do.call(what = Legend, args = lt_args)
 
   if (!identical(filename, character(0))) {
     on.exit(dev.off())
     base_save_args <- list(filename = filename,
-                           # height = convertUnit(nrow(NES_mat)*cell_size +
-                           #                        unit(140, "points"), units),
-                           height = height, width = width, units = units)
+                           height = height, width = width,
+                           units = units)
     save_args <- modifyList(x = base_save_args,
                             val = save_args,
                             keep.null = TRUE)
@@ -223,7 +220,8 @@ enrichmat <- function(x,
              annotation_legend_list = list(lt),
              merge_legends = TRUE,
              legend_gap = unit(0.15, "in")),
-    val = draw_args, keep.null = TRUE)
+    val = draw_args, keep.null = TRUE
+  )
 
   do.call(what = draw, args = draw_args)
 }
@@ -260,7 +258,7 @@ layer_fun <- function(j, i, x, y, w, h, f)
     r = pindex(rmat, i, j) / 2 * cell_size,
     gp = gpar(col = ifelse(pindex(padj_mat, i, j) < padj_cutoff,
                            "black", NA),
-              fill = col_fun(pindex(NES_mat, i, j))
+                           fill = col_fun(pindex(NES_mat, i, j))
     ))
 }
 

@@ -31,7 +31,7 @@ lowercase letters. Improves appearance of plots, such as those produced by
 \value{
 A \code{\link[data.table]{data.table}} with columns
 "gs_exact_source" (term ID), "gs_subcat" (subcategory), "gs_description"
-(term description), and a list column of gene IDs specified by
+(term description), and a list-column of gene IDs specified by
 \code{genes}.
 }
 \description{
@@ -39,6 +39,7 @@ Wrapper around \code{\link[msigdbr]{msigdbr}}. Reformats pathway
 data for use with \code{\link{fgsea2}}.
 }
 \examples{
+# Reactome pathways and GO Molecular Functions:
 x <- msigdbr2(species = "rat",
               genes = "gene_symbol",
               gs_subcat = c("CP:REACTOME", "GO:MF"))
