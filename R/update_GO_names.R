@@ -5,8 +5,7 @@
 #'   \href{http://geneontology.org/}{Gene Ontology Consortium}.
 #'
 #' @param x object of class \code{data.frame} produced by
-#'   \code{link[msigdbr]{msigdbr}} or
-#'   \code{\link[MotrpacRatTraining6moWAT]{msigdbr2}} containing columns
+#'   \code{link[msigdbr]{msigdbr}} or \code{\link{msigdbr2}} containing columns
 #'   \code{gs_description} and \code{gs_subcat}.
 #' @param version character; specifies the version of \code{msigdbr} to use.
 #'   Defaults to the current version.
@@ -42,6 +41,8 @@
 #' @importFrom data.table setDT setDF setkeyv `:=`
 #' @importFrom ontologyIndex get_OBO
 #' @importFrom utils head packageVersion
+#' @importFrom BiocFileCache BiocFileCache bfcquery bfcadd bfcrpath bfcnew
+#'   bfccount
 #'
 #' @export update_GO_names
 #'
@@ -50,7 +51,7 @@
 #'               genes = "gene_symbol",
 #'               gs_subcat = "GO:MF")
 #' set.seed(9900)
-#' idx <- sample(1:nrow(x), size = 6)
+#' idx <- sample(1:nrow(x), size = 6) # random indices to illustrate changes
 #' x$gs_description[idx] # before
 #'
 #' y <- update_GO_names(x, capitalize = TRUE)
@@ -63,20 +64,47 @@ update_GO_names <- function(x,
 {
   go_subcats <- c("GO:MF", "GO:CC", "GO:BP")
 
-  # setDT(x, key = "gs_exact_source")
   setDT(x)
 
   if (any(x[["gs_subcat"]] %in% go_subcats)) {
-    file <- obo_file(version = version)
+
+    dir <- tools::R_user_dir(package = "MotrpacRatTraining6moWAT",
+                             which = "cache")
+
+    bfc <- BiocFileCache(cache = dir)
+    rname <- sprintf("MSigDB_v%s_Release_Notes", version)
+
+    q1 <- bfcquery(bfc, query = rname, field = "rname")
+
+    if (bfccount(q1) == 1L) {
+      file <- q1$fpath
+    } else {
+      message(sprintf("Searching MSigDB %s Release Notes for OBO file date:",
+                      version))
+      file <- obo_file(version = version)
+      bfcadd(bfc, fpath = file, rname = rname, fname = "unique")
+    }
+
     message(paste("Updating GO term descriptions with", file))
 
-    go_basic_list <- get_OBO(file,
-                             propagate_relationships = "is_a",
-                             extract_tags = "minimal")
-    go.dt <- as.data.frame(go_basic_list)
-    setDT(go.dt)
-    go.dt <- go.dt[obsolete != TRUE & grepl("^GO", id), list(id, name)]
-    # setkeyv(go.dt, cols = "id")
+    obo_date <- sub(".*org/([^/]+)/.*", "\\1", file)
+    obo_rname <- paste0("GO_OBO_data_", obo_date)
+
+    q2 <- bfcquery(bfc, query = obo_rname, field = "rname")
+
+    if (bfccount(q2) == 1L) {
+      go.dt <- readRDS(file = bfcrpath(bfc, rnames = obo_rname))
+    } else {
+      message("Downloading OBO file to cache:")
+      go_basic_list <- get_OBO(file,
+                               propagate_relationships = "is_a",
+                               extract_tags = "minimal")
+      go.dt <- as.data.frame(go_basic_list)
+      setDT(go.dt)
+      go.dt <- go.dt[obsolete != TRUE & grepl("^GO", id), list(id, name)]
+      saveRDS(go.dt, file = bfcnew(bfc, rname = obo_rname, fname = "unique"),
+              compress = TRUE)
+    }
 
     # Update gs_description column with names from OBO file
     x[go.dt, on = list(gs_exact_source = id), gs_description := i.name]
@@ -100,24 +128,27 @@ update_GO_names <- function(x,
 ## Helper functions ------------------------------------------------------------
 
 # Get the path to the appropriate OBO file.
-obo_file <- function(version = packageVersion("msigdbr")) {
+obo_file <- function(version = packageVersion("msigdbr"))
+{
   # MSigDB release notes for appropriate version
-  path <- sprintf(file.path("https://software.broadinstitute.org/cancer",
-                            "software/gsea/wiki/index.php",
-                            "MSigDB_v%s_Release_Notes"), version)
-  x <- readLines(path)
+  url <- sprintf(file.path("https://software.broadinstitute.org/cancer",
+                           "software/gsea/wiki/index.php",
+                           "MSigDB_v%s_Release_Notes"), version)
+
+  x <- readLines(url)
   x <- paste(x, collapse = "")
   x <- gsub("\\\\n", "", x)
 
   phrase <- "GO-basic obo file released on"
 
   if (!grepl(phrase, x)) {
-    stop(sprintf("Phrase '%s' not found in %s", phrase, path))
+    stop(sprintf("Phrase '%s' not found in %s", phrase, url))
   }
 
   obo_date <- sub(sprintf(".*%s ([^ ]+).*", phrase), "\\1", x)
   obo_file <- sprintf("http://release.geneontology.org/%s/ontology/go-basic.obo",
                       obo_date)
+
   return(obo_file)
 }
 
@@ -125,7 +156,8 @@ obo_file <- function(version = packageVersion("msigdbr")) {
 # Capitalize first letter of first word unless there is
 # already a mix of uppercase and lowercase letters.
 # x is a character vector.
-cap_names <- function(x) {
+cap_names <- function(x)
+{
   first_word <- sub(" .*", "", x)
   idx <- first_word == tolower(first_word)
 

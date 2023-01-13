@@ -8,8 +8,7 @@ update_GO_names(x, version = packageVersion("msigdbr"), capitalize = FALSE)
 }
 \arguments{
 \item{x}{object of class \code{data.frame} produced by
-\code{link[msigdbr]{msigdbr}} or
-\code{\link[MotrpacRatTraining6moWAT]{msigdbr2}} containing columns
+\code{link[msigdbr]{msigdbr}} or \code{\link{msigdbr2}} containing columns
 \code{gs_description} and \code{gs_subcat}.}
 
 \item{version}{character; specifies the version of \code{msigdbr} to use.
@@ -39,7 +38,7 @@ x <- msigdbr2(species = "Homo sapiens",
               genes = "gene_symbol",
               gs_subcat = "GO:MF")
 set.seed(9900)
-idx <- sample(1:nrow(x), size = 6)
+idx <- sample(1:nrow(x), size = 6) # random indices to illustrate changes
 x$gs_description[idx] # before
 
 y <- update_GO_names(x, capitalize = TRUE)
