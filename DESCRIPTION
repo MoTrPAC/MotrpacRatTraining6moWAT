@@ -23,7 +23,6 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: 
     R (>= 3.5.0),
-    MotrpacRatTraining6moData,
     Biobase
 Imports: 
     BiocFileCache,
