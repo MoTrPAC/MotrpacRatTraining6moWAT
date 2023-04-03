@@ -35,3 +35,13 @@ if (!require("devtools", quietly = TRUE)) {
 }
 devtools::install_github("PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT")
 ```
+
+# Preprint
+
+Many, G. M., Sanford, J. A., Sagendorf, T. J., Hou, Z., Nigro, P.,
+Whytock, K., Amar, D., Caputo, T., Gay, N. R., Gaul, D. A., Hirshman,
+M., Jimenez-Morales, D., Lindholm, M. E., Muehlbauer, M. J., Vamvini,
+M., Bergman, B., Fernández, F. M., Goodyear, L. J., Ortlund, E. A., …
+Schenk, S. (2023). Sexual dimorphism and the multi-omic response to
+exercise training in rat subcutaneous white adipose tissue. *BioRxiv*.
+<a href="https://doi.org/10.1101/2023.02.03.527012" target="_blank">https://doi.org/10.1101/2023.02.03.527012</a>

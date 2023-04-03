@@ -17,11 +17,11 @@ knitr::opts_chunk$set(
 
 A collection of functions for the analysis and visualization of the MoTrPAC PASS1B white adipose tissue (WAT) data as provided in the <a href="https://motrpac.github.io/MotrpacRatTraining6moData/index.html" target="_blank">MotrpacRatTraining6moData</a> package. This package was built specifically to generate the MotrpacRatTraining6moWATData package, so much of it is tailored only for use with those datasets, though users may find some of the functionality contained herein to be useful in other projects:
 
-* Differential analysis (DA) with the <a href="https://bioconductor.org/packages/release/bioc/html/limma.html" target="_blank">limma</a> and <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html" target="_blank">edgeR</a> packages
-* Fast Gene Set Enrichment Analysis (FGSEA) with <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html" target="_blank">fgsea</a> and <a href="https://cran.r-project.org/web/packages/msigdbr/index.html" target="_blank">msigdbr</a>
-* Kinase-Substrate Enrichment Analysis (KSEA) with <a href="https://www.phosphosite.org/homeAction.action">PhosphoSitePlus</a>
-* Over-representation analysis (ORA)
-* Weighted Gene Co-expression Network Analysis (WGCNA)
+-   Differential analysis (DA) with the <a href="https://bioconductor.org/packages/release/bioc/html/limma.html" target="_blank">limma</a> and <a href="https://bioconductor.org/packages/release/bioc/html/edgeR.html" target="_blank">edgeR</a> packages
+-   Fast Gene Set Enrichment Analysis (FGSEA) with <a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html" target="_blank">fgsea</a> and <a href="https://cran.r-project.org/web/packages/msigdbr/index.html" target="_blank">msigdbr</a>
+-   Kinase-Substrate Enrichment Analysis (KSEA) with <a href="https://www.phosphosite.org/homeAction.action">PhosphoSitePlus</a>
+-   Over-representation analysis (ORA)
+-   Weighted Gene Co-expression Network Analysis (WGCNA)
 
 ## Installation
 
@@ -33,3 +33,7 @@ if (!require("devtools", quietly = TRUE)) {
 }
 devtools::install_github("PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT")
 ```
+
+# Preprint
+
+Many, G. M., Sanford, J. A., Sagendorf, T. J., Hou, Z., Nigro, P., Whytock, K., Amar, D., Caputo, T., Gay, N. R., Gaul, D. A., Hirshman, M., Jimenez-Morales, D., Lindholm, M. E., Muehlbauer, M. J., Vamvini, M., Bergman, B., Fernández, F. M., Goodyear, L. J., Ortlund, E. A., ... Schenk, S. (2023). Sexual dimorphism and the multi-omic response to exercise training in rat subcutaneous white adipose tissue. *BioRxiv*. <a href="https://doi.org/10.1101/2023.02.03.527012" target="_blank">https://doi.org/10.1101/2023.02.03.527012</a>
