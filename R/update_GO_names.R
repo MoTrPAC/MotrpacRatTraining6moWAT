@@ -13,13 +13,18 @@
 #'   description if the first word does not contain a mix of capital and
 #'   lowercase letters. Improves appearance of plots, such as those produced by
 #'   \code{\link{enrichmat}}.
+#' @param obo_file character; optional path to the OBO file that should be used
+#'   to update Gene Ontology term descriptions. Only provide when the
+#'   appropriate OBO file cannot be extracted from the MSigDB Release Notes (See
+#'   Details).
 #'
 #' @returns Object of class \code{data.frame}. The same as \code{x}, but with
 #'   updated descriptions.
 #'
 #' @details This function assumes that the phrase "GO-basic obo file released
 #'   on" is present in the MSigDB release notes for that version and is followed
-#'   by a date.
+#'   by a date. This date will replace "RELEASE_DATE" in
+#'   "http://release.geneontology.org/RELEASE_DATE/ontology/go-basic.obo".
 #'
 #' @md
 #'
@@ -60,7 +65,8 @@
 
 update_GO_names <- function(x,
                             version = packageVersion("msigdbr"),
-                            capitalize = FALSE)
+                            capitalize = FALSE,
+                            obo_file)
 {
   go_subcats <- c("GO:MF", "GO:CC", "GO:BP")
 
@@ -76,18 +82,20 @@ update_GO_names <- function(x,
 
     q1 <- bfcquery(bfc, query = rname, field = "rname")
 
-    if (bfccount(q1) == 1L) {
-      file <- q1$fpath
+    if (bfccount(q1) == 1L & missing(obo_file)) {
+      obo_file <- q1$fpath
     } else {
-      message(sprintf("Searching MSigDB %s Release Notes for OBO file date:",
-                      version))
-      file <- obo_file(version = version)
-      bfcadd(bfc, fpath = file, rname = rname, fname = "unique")
+      if (missing(obo_file)) {
+        message(sprintf("Searching MSigDB %s Release Notes for OBO file date:",
+                        version))
+        obo_file <- obo_file(version = version)
+      }
+      bfcadd(bfc, fpath = obo_file, rname = rname, fname = "unique")
     }
 
-    message(paste("Updating GO term descriptions with", file))
+    message(paste("Updating GO term descriptions with", obo_file))
 
-    obo_date <- sub(".*org/([^/]+)/.*", "\\1", file)
+    obo_date <- sub(".*org/([^/]+)/.*", "\\1", obo_file)
     obo_rname <- paste0("GO_OBO_data_", obo_date)
 
     q2 <- bfcquery(bfc, query = obo_rname, field = "rname")
@@ -96,7 +104,7 @@ update_GO_names <- function(x,
       go.dt <- readRDS(file = bfcrpath(bfc, rnames = obo_rname))
     } else {
       message("Downloading OBO file to cache:")
-      go_basic_list <- get_OBO(file,
+      go_basic_list <- get_OBO(file = obo_file,
                                propagate_relationships = "is_a",
                                extract_tags = "minimal")
       go.dt <- as.data.frame(go_basic_list)
