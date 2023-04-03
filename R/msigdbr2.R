@@ -18,7 +18,7 @@
 #'   (term description), and a list-column of gene IDs specified by
 #'   \code{genes}.
 #'
-#' @importFrom data.table rbindlist `.SD` `:=` setnames setDF
+#' @importFrom data.table rbindlist `.SD` `:=` setnames
 #' @importFrom msigdbr msigdbr_collections msigdbr
 #' @importFrom ontologyIndex get_OBO
 #'
@@ -77,7 +77,6 @@ msigdbr2 <- function(species = "Homo sapiens",
   # Update GO descriptions
   paths <- update_GO_names(paths, capitalize = capitalize)
 
-  setDF(paths)
   return(paths)
 }
 

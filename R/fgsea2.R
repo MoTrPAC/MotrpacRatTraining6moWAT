@@ -4,14 +4,14 @@
 #'   output of \code{\link{msigdbr2}}.
 #'
 #' @param pathways output of \code{\link{msigdbr2}}.
-#' @param stats output of \code{\link{get_ranking}}.
-#' @param gene_column character string; the name of a column in \code{pathways}
+#' @param stats output of \code{\link{rank_genes}}.
+#' @param gene_column character; the name of a column in \code{pathways}
 #'   containing the genes in each pathway.
-#' @param adjust.method character string; the p-value correction method. Can be
+#' @param adjust.method character; the p-value correction method. Can be
 #'   abbreviated. See \code{\link[stats]{p.adjust.methods}}.
 #' @param adjust.globally logical; should p-values from all contrasts be
-#'   adjusted together using \code{adjust.method}? Set to \code{FALSE} if the contrasts
-#'   being tested are not closely related.
+#'   adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
+#'   contrasts being tested are not closely related.
 #' @param seed numeric or \code{NULL}; passed to \code{set.seed}.
 #' @param ... additional arguments passed to
 #'   \code{\link[fgsea]{fgseaMultilevel}}.
@@ -60,7 +60,6 @@ fgsea2 <- function(pathways,
   res <- rbindlist(res)
   setDT(res)
 
-
   pathways <- pathways[, list(gs_subcat, gs_exact_source, gs_description)]
 
   res <- merge(res, pathways, sort = FALSE,
@@ -68,7 +67,10 @@ fgsea2 <- function(pathways,
 
   # p-value adjustment
   by <- "gs_subcat"
-  if (!adjust.globally) { by <- c(by, "contrast") }
+  if (!adjust.globally) {
+    by <- c(by, "contrast")
+  }
+
   res[, padj := p.adjust(pval, method = adjust.method), by = by]
 
   return(res)

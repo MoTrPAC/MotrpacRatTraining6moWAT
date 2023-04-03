@@ -17,17 +17,17 @@ fgsea2(
 \arguments{
 \item{pathways}{output of \code{\link{msigdbr2}}.}
 
-\item{stats}{output of \code{\link{get_ranking}}.}
+\item{stats}{output of \code{\link{rank_genes}}.}
 
-\item{gene_column}{character string; the name of a column in \code{pathways}
+\item{gene_column}{character; the name of a column in \code{pathways}
 containing the genes in each pathway.}
 
-\item{adjust.method}{character string; the p-value correction method. Can be
+\item{adjust.method}{character; the p-value correction method. Can be
 abbreviated. See \code{\link[stats]{p.adjust.methods}}.}
 
 \item{adjust.globally}{logical; should p-values from all contrasts be
-adjusted together using \code{adjust.method}? Set to \code{FALSE} if the contrasts
-being tested are not closely related.}
+adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
+contrasts being tested are not closely related.}
 
 \item{seed}{numeric or \code{NULL}; passed to \code{set.seed}.}
 
