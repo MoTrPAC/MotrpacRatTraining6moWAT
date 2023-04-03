@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MotrpacRatTraining6moWAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@
 <span>  <span class="va">universe</span>,</span>
 <span>  gene_column <span class="op">=</span> <span class="st">"entrez_gene"</span>,</span>
 <span>  minSize <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  maxSize <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  maxSize <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">universe</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>,</span>
 <span>  adjust.method <span class="op">=</span> <span class="st">"scale"</span>,</span>
 <span>  adjust.globally <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -67,11 +67,13 @@
 
 
 <dt>genes</dt>
-<dd><p>named list of genes.</p></dd>
+<dd><p>named list of genes. These are usually clusters of related
+genes.</p></dd>
 
 
 <dt>universe</dt>
-<dd><p>character vector of background genes.</p></dd>
+<dd><p>character vector of background genes. Usually, this is all
+unique elements of <code>genes</code>.</p></dd>
 
 
 <dt>gene_column</dt>
@@ -99,6 +101,22 @@ adjusted together using <code>adjust.method</code>? Set to <code>FALSE</code> if
 contrasts being tested are not closely related.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>If <code>adjust.method = "scale"</code>, the function will calculate the
+maximum overlap for each combination of <code>names(genes)</code> and (if
+<code>adjust.globally = TRUE</code>), the entries of the "gs_subcat" column of
+<code>pathways</code>. For each gene set, it will then calculate the ratio of the
+size of that set's overlap to one plus the maximum overlap. The addition of
+1 in the denominator is to penalize small maximum overlaps. The
+<code>log10(pval)</code> is multiplied by this overlap ratio and then
+back-transformed to obtain p-values adjusted by how well they describe each
+group defined by <code>genes</code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/fgsea/man/fora.html" class="external-link">fora</a></code></p></div>
+    </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
     <p>Tyler Sagendorf</p>

@@ -14,7 +14,7 @@ Gene Ontology Consortium."><!-- mathjax --><script src="https://cdnjs.cloudflare
     
     <a class="navbar-brand me-2" href="../index.html">MotrpacRatTraining6moWAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,12 @@ Gene Ontology Consortium."><!-- mathjax --><script src="https://cdnjs.cloudflare
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_GO_names</span><span class="op">(</span><span class="va">x</span>, version <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"msigdbr"</span><span class="op">)</span>, capitalize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_GO_names</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  version <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"msigdbr"</span><span class="op">)</span>,</span>
+<span>  capitalize <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">obo_file</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -76,6 +81,13 @@ description if the first word does not contain a mix of capital and
 lowercase letters. Improves appearance of plots, such as those produced by
 <code><a href="enrichmat.html">enrichmat</a></code>.</p></dd>
 
+
+<dt>obo_file</dt>
+<dd><p>character; optional path to the OBO file that should be used
+to update Gene Ontology term descriptions. Only provide when the
+appropriate OBO file cannot be extracted from the MSigDB Release Notes (See
+Details).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -88,7 +100,8 @@ updated descriptions.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function assumes that the phrase "GO-basic obo file released
 on" is present in the MSigDB release notes for that version and is followed
-by a date.</p>
+by a date. This date will replace "RELEASE_DATE" in
+"http://release.geneontology.org/RELEASE_DATE/ontology/go-basic.obo".</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -115,27 +128,18 @@ Archive</a></p></div>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="msigdbr2.html">msigdbr2</a></span><span class="op">(</span>species <span class="op">=</span> <span class="st">"Homo sapiens"</span>,</span></span>
 <span class="r-in"><span>              genes <span class="op">=</span> <span class="st">"gene_symbol"</span>,</span></span>
 <span class="r-in"><span>              gs_subcat <span class="op">=</span> <span class="st">"GO:MF"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Updating GO term descriptions with http://release.geneontology.org/2021-12-15/ontology/go-basic.obo</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Searching MSigDB 7.5.1 Release Notes for OBO file date:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in obo_file(version = version):</span> argument "obo_file" is missing, with no default</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">9900</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="co"># random indices to illustrate changes</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'nrow': object 'x' not found</span>
 <span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="va">gs_description</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="co"># before</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "nerve growth factor binding"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "tropomyosin binding"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "transforming growth factor beta binding" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "lipid transfer activity"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "L-lactate dehydrogenase activity"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "protein serine/threonine kinase activity"</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'x' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">update_GO_names</span><span class="op">(</span><span class="va">x</span>, capitalize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Updating GO term descriptions with http://release.geneontology.org/2021-12-15/ontology/go-basic.obo</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Capitalizing entries of gs_description column.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in setDT(x):</span> object 'x' not found</span>
 <span class="r-in"><span><span class="va">y</span><span class="op">$</span><span class="va">gs_description</span><span class="op">[</span><span class="va">idx</span><span class="op">]</span> <span class="co"># after</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nerve growth factor binding"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "Tropomyosin binding"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Transforming growth factor beta binding" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "Lipid transfer activity"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "L-lactate dehydrogenase activity"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "Protein serine/threonine kinase activity"</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'y' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

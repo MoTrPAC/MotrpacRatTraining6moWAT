@@ -12,7 +12,7 @@ Performs moderated t-tests, F-tests, or linear regression."><!-- mathjax --><scr
     
     <a class="navbar-brand me-2" href="../index.html">MotrpacRatTraining6moWAT</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,9 +70,10 @@ Performs moderated t-tests, F-tests, or linear regression.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
-<dd><p>Object of class <code><a href="https://lgatto.github.io/MSnbase/reference/MSnSet-class.html" class="external-link">MSnSet</a></code>. The
-<code>exprs</code> slot can be either a matrix of log\(_2\) relative abundances
-or counts. If the latter, the limma--edgeR pipeline
+<dd><p>Object of class
+<code><a href="https://rdrr.io/pkg/Biobase/man/class.ExpressionSet.html" class="external-link">ExpressionSet</a></code>. The <code>exprs</code>
+slot can be either a matrix of log\(_2\) relative abundances or counts.
+If the latter, the limma--edgeR pipeline
 (<a href="https://doi.org/10.12688/f1000research.9005.3" class="external-link">https://doi.org/10.12688/f1000research.9005.3</a>) will automatically be
 used.</p></dd>
 
@@ -118,12 +119,11 @@ weight of 1). Weights affect the logFC and P.Value columns of the results.</p></
 <dt>block</dt>
 <dd><p><code>NULL</code> or character; name of a column in
 <code>pData(object)</code> specifying a blocking variable. Passed to
-<code><a href="https://rdrr.io/pkg/limma/man/dupcor.html" class="external-link">duplicateCorrelation</a></code>. See
-<a href="https://support.bioconductor.org/p/125489/#125602" class="external-link">When to use
-<code>duplicateCorrelation</code></a>. Section 9.7 "Multi-level Experiments" of the
-<a href="https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf" class="external-link">LIMMA
-User's Guide</a> explains when to use <code>duplicateCorrelation</code>. Currently
-ignored if <code>exprs(object)</code> is a matrix of counts.</p></dd>
+<code><a href="https://rdrr.io/pkg/limma/man/dupcor.html" class="external-link">duplicateCorrelation</a></code>. Section 9.7 "Multi-level
+Experiments" of the LIMMA User's Guide (see
+<code><a href="https://rdrr.io/pkg/limma/man/limmaUsersGuide.html" class="external-link">limmaUsersGuide</a></code>) explains when to use
+<code>duplicateCorrelation</code>. Currently ignored if <code>exprs(object)</code> is a
+matrix of counts.</p></dd>
 
 
 <dt>plot</dt>
@@ -141,9 +141,9 @@ See <code><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">
 <dt>adjust.globally</dt>
 <dd><p>logical; should p-values from all contrasts be
 adjusted together using <code>adjust.method</code>? Set to <code>FALSE</code> if the
-contrasts being tested are not closely related. See the "Multiple Testing
-Across Contrasts" section of the LIMMA User's Guide (linked in "See Also")
-for more information.</p></dd>
+contrasts being tested are not closely related. See Section 13.3 "Multiple
+Testing Across Contrasts" of the LIMMA User's Guide
+(<code><a href="https://rdrr.io/pkg/limma/man/limmaUsersGuide.html" class="external-link">limmaUsersGuide</a></code>) for more information.</p></dd>
 
 
 <dt>...</dt>
@@ -156,18 +156,18 @@ for more information.</p></dd>
 
 <p><code>data.frame</code>. Output of <code><a href="https://rdrr.io/pkg/limma/man/toptable.html" class="external-link">topTable</a></code> with
 additional columns <code>feature</code>, <code>contrast</code>, and column(s) for the
-standard error (se) of the logFC. All columns from <code>fData</code> are also
+standard error (SE) of the logFC. All columns from <code>fData</code> are also
 included.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>An MDS plot (produced by <code><a href="https://rdrr.io/pkg/limma/man/plotMDS.html" class="external-link">plotMDS</a></code>) is used to
-determine the appropriate value of <code>var.group</code>. If samples within
-phenotype groups tend to cluster well and have similar dispersions, the
-default <code>var.group = character(0)</code> is recommended. If samples within
-phenotype groups tend to cluster well, but different groups are more or
-less dispersed, it may be beneficial to set <code>var.group</code> to the name of
-the phenotype column. If one or more samples tend to cluster poorly with
+    <p>An MDS plot (<code><a href="https://rdrr.io/pkg/limma/man/plotMDS.html" class="external-link">plotMDS</a></code>) is used to determine the
+appropriate value of <code>var.group</code>. If samples within phenotype groups
+tend to cluster well and have similar dispersions, the default
+<code>var.group = character(0)</code> is recommended. If samples within phenotype
+groups tend to cluster well, but different groups are more or less
+dispersed, it may be beneficial to set <code>var.group</code> to the name of the
+phenotype column. If one or more samples tend to cluster poorly with
 samples of the same phenotype, it may be beneficial to weight by sample.
 That is, set <code>var.group</code> to the name of the column in
 <code>pData(object)</code> that uniquely identifies each sample. If variation
@@ -209,6 +209,8 @@ annals of applied statistics, 10</em>(2), 946--963.
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><a href="https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf" class="external-link">LIMMA
 User's Guide</a></p>
+<p><a href="https://support.bioconductor.org/p/125489/#125602" class="external-link">When to use
+<code>duplicateCorrelation</code></a></p>
 <p><a href="https://online.stat.psu.edu/stat555/node/1/" class="external-link">PennState STAT 555 -
 Statistical Analysis of Genomics Data</a></p>
 <p><a href="http://varianceexplained.org/statistics/interpreting-pvalue-histogram/" class="external-link">How

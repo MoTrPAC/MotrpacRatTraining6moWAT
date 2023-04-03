@@ -28,12 +28,6 @@
     <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/fora2.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/get_ranking.html</loc>
-  </url>
-  <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/ggplotMDS.html</loc>
-  </url>
-  <url>
     <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/index.html</loc>
   </url>
   <url>
@@ -46,31 +40,13 @@
     <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/msigdbr2.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/plot_ORA.html</loc>
-  </url>
-  <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/plot_analyte.html</loc>
-  </url>
-  <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/plot_eigenfeature.html</loc>
-  </url>
-  <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/plot_upset.html</loc>
-  </url>
-  <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/plot_volcano.html</loc>
-  </url>
-  <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/pval_hist.html</loc>
-  </url>
-  <url>
     <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/range_extend.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/run_WGCNA.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/rank_genes.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/theme_pub.html</loc>
+    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/run_WGCNA.html</loc>
   </url>
   <url>
     <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/update_GO_names.html</loc>
