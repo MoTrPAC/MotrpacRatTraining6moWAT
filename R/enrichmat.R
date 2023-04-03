@@ -250,7 +250,7 @@ layer_fun <- function(j, i, x, y, w, h, f)
                   apply(rmat, MARGIN = margin, max, na.rm = TRUE),
                   FUN = "/")
   } else {
-    rmat <- rmat/max(rmat, na.rm = TRUE)
+    rmat <- rmat / max(rmat, na.rm = TRUE)
   }
 
   grid.circle(
@@ -271,11 +271,14 @@ heatmap_color_fun <- function(NES_mat,
   NES_mat <- NES_mat[!is.na(NES_mat)]
   extended_range <- range_extend(NES_mat, nearest = 0.1)
 
-  if (all(sign(NES_mat) %in% c(0, +1))) {
-    breaks <- c(0, 1, extended_range[2])
+  # if (all(sign(NES_mat) %in% c(0, +1))) {
+  if (all(NES_mat >= -1)) {
+    breaks <- c(-1, 1, extended_range[2])
     colors <- c("white", "white", colors[2])
-  } else if (all(sign(NES_mat) %in% c(0, -1))) {
-    breaks <- c(extended_range[1], -1, 0)
+  }
+  # } else if (all(sign(NES_mat) %in% c(0, -1))) {
+  else if (all(NES_mat <= +1)) {
+    breaks <- c(extended_range[1], -1, 1)
     colors <- c(colors[1], "white", "white")
   } else {
     breaks <- c(extended_range[1], -1, 1, extended_range[2])
