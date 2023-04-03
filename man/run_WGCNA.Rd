@@ -4,56 +4,39 @@
 \alias{run_WGCNA}
 \title{Run WGCNA Pipeline}
 \usage{
-run_WGCNA(
-  object,
-  power = 1:20,
-  RsquaredCut = 0.9,
-  module_prefix = "",
-  merge_modules
-)
+run_WGCNA(object, power = 1:20, RsquaredCut = 0.9, module_prefix = "")
 }
 \arguments{
-\item{object}{object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}}.
-\code{exprs} should be a matrix of log\eqn{_2}-transformed values. Count
-data is not accepted.}
+\item{object}{object of class
+\code{\link[Biobase:ExpressionSet-class]{ExpressionSet}}. \code{exprs}
+should be a matrix of log\eqn{_2}-transformed values. Count data is not
+accepted.}
 
 \item{power}{integer; optional soft power vector (length 1 or greater). If
-not specified, the lowest value of 1:20 that satisfies scale-free fit
-R\eqn{^2} at least equal to \code{RsquaredCut} will be used.}
+not specified, the lowest value of 1--20 that satisfies scale-free fit
+R\eqn{^2 \geq} \code{RsquaredCut} will be used.}
 
-\item{RsquaredCut}{numeric; desired minimum scale-free fit R\eqn{^2}. Ignored
-if \code{power} is provided.}
+\item{RsquaredCut}{numeric; minimum acceptable scale-free fit R\eqn{^2}.
+Ignored if \code{power} is provided.}
 
-\item{module_prefix}{character; what to append to the module numbers to
-create the "moduleID" column in \code{fData(object)}.}
-
-\item{merge_modules}{logical; if not provided, user input is requested to
-determine whether highly-correlated (r=0.85) modules should be combined
-based on plots that the function creates. Must be provided if session is
-not interactive.}
+\item{module_prefix}{character; appended to the module numbers to create the
+"moduleID" column.}
 }
 \value{
 Object of class \code{list} of length 2:
 
 \itemize{
 \item "modules": a \code{data.frame} with the following columns, in
-addition to all columns in \code{MSnbase::fData(object)}.
+addition to all columns in \code{Biobase::fData(object)}.
 \describe{
 \item{moduleColor}{moduleColor; unique color assigned to each module.
 The "grey" module always contains features that are not co-expressed.}
 \item{moduleID}{factor; \code{module_prefix} followed by a unique
 module number. The "grey" module is always 0.}
 }
-\item "MEs": a \code{data.frame} with 6 variables.
+\item "MEs": a \code{data.frame} with 3 variables, in addition to all
+variables in \code{pData(object)}.
 \describe{
-\item{\code{bid}}{integer; unique 5 digit identifier of all samples
-collected for an acute test/sample collection period. All samples
-collected during that period will have the same BID.}
-\item{\code{sex}}{factor; the sex of the rat with levels "Female" and
-"Male".}
-\item{\code{timepoint}}{factor; exercise training group. Either "SED"
-(sedentary) or the number of weeks of training ("1W", "2W", "4W",
-"8W").}
 \item{\code{moduleID}}{factor; \code{module_prefix} followed by a
 unique module number. The "grey" module is always 0.}
 \item{\code{ME}}{numeric; module eigenfeature values. One per sample x
@@ -64,7 +47,8 @@ module is always 0.}
 }
 }
 \description{
-Run the WGCNA pipeline used in the WAT manuscript.
+Run the WGCNA pipeline used in the MoTrPAC PASS1B WAT
+manuscript.
 }
 \references{
 Zhang, B., & Horvath, S. (2005). A general framework for weighted
