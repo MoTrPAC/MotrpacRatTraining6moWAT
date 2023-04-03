@@ -10,7 +10,7 @@ fora2(
   universe,
   gene_column = "entrez_gene",
   minSize = 1,
-  maxSize = Inf,
+  maxSize = length(universe) - 1,
   adjust.method = "scale",
   adjust.globally = TRUE
 )
@@ -18,9 +18,11 @@ fora2(
 \arguments{
 \item{pathways}{output of \code{link{msigdbr2}}.}
 
-\item{genes}{named list of genes.}
+\item{genes}{named list of genes. These are usually clusters of related
+genes.}
 
-\item{universe}{character vector of background genes.}
+\item{universe}{character vector of background genes. Usually, this is all
+unique elements of \code{genes}.}
 
 \item{gene_column}{character; the name of the column in pathways containing
 the elements of each gene set.}
@@ -39,6 +41,20 @@ contrasts being tested are not closely related.}
 }
 \description{
 Custom wrapper for \code{\link[fgsea]{fora}}.
+}
+\details{
+If \code{adjust.method = "scale"}, the function will calculate the
+maximum overlap for each combination of \code{names(genes)} and (if
+\code{adjust.globally = TRUE}), the entries of the "gs_subcat" column of
+\code{pathways}. For each gene set, it will then calculate the ratio of the
+size of that set's overlap to one plus the maximum overlap. The addition of
+1 in the denominator is to penalize small maximum overlaps. The
+\code{log10(pval)} is multiplied by this overlap ratio and then
+back-transformed to obtain p-values adjusted by how well they describe each
+group defined by \code{genes}.
+}
+\seealso{
+\code{\link[fgsea]{fora}}
 }
 \author{
 Tyler Sagendorf

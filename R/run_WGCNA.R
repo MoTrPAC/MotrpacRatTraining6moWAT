@@ -1,43 +1,34 @@
 #' @title Run WGCNA Pipeline
 #'
-#' @description Run the WGCNA pipeline used in the WAT manuscript.
+#' @description Run the WGCNA pipeline used in the MoTrPAC PASS1B WAT
+#'   manuscript.
 #'
-#' @param object object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}}.
-#'   \code{exprs} should be a matrix of log\eqn{_2}-transformed values. Count
-#'   data is not accepted.
+#' @param object object of class
+#'   \code{\link[Biobase:ExpressionSet-class]{ExpressionSet}}. \code{exprs}
+#'   should be a matrix of log\eqn{_2}-transformed values. Count data is not
+#'   accepted.
 #' @param power integer; optional soft power vector (length 1 or greater). If
-#'   not specified, the lowest value of 1:20 that satisfies scale-free fit
-#'   R\eqn{^2} at least equal to \code{RsquaredCut} will be used.
-#' @param RsquaredCut numeric; desired minimum scale-free fit R\eqn{^2}. Ignored
-#'   if \code{power} is provided.
-#' @param module_prefix character; what to append to the module numbers to
-#'   create the "moduleID" column in \code{fData(object)}.
-#' @param merge_modules logical; if not provided, user input is requested to
-#'   determine whether highly-correlated (r=0.85) modules should be combined
-#'   based on plots that the function creates. Must be provided if session is
-#'   not interactive.
+#'   not specified, the lowest value of 1--20 that satisfies scale-free fit
+#'   R\eqn{^2 \geq} \code{RsquaredCut} will be used.
+#' @param RsquaredCut numeric; minimum acceptable scale-free fit R\eqn{^2}.
+#'   Ignored if \code{power} is provided.
+#' @param module_prefix character; appended to the module numbers to create the
+#'   "moduleID" column.
 #'
 #' @returns Object of class \code{list} of length 2:
 #'
 #' \itemize{
 #'   \item "modules": a \code{data.frame} with the following columns, in
-#'   addition to all columns in \code{MSnbase::fData(object)}.
+#'   addition to all columns in \code{Biobase::fData(object)}.
 #'     \describe{
 #'       \item{moduleColor}{moduleColor; unique color assigned to each module.
 #'       The "grey" module always contains features that are not co-expressed.}
 #'       \item{moduleID}{factor; \code{module_prefix} followed by a unique
 #'       module number. The "grey" module is always 0.}
 #'     }
-#'   \item "MEs": a \code{data.frame} with 6 variables.
+#'   \item "MEs": a \code{data.frame} with 3 variables, in addition to all
+#'   variables in \code{pData(object)}.
 #'     \describe{
-#'       \item{\code{bid}}{integer; unique 5 digit identifier of all samples
-#'       collected for an acute test/sample collection period. All samples
-#'       collected during that period will have the same BID.}
-#'       \item{\code{sex}}{factor; the sex of the rat with levels "Female" and
-#'       "Male".}
-#'       \item{\code{timepoint}}{factor; exercise training group. Either "SED"
-#'       (sedentary) or the number of weeks of training ("1W", "2W", "4W",
-#'       "8W").}
 #'       \item{\code{moduleID}}{factor; \code{module_prefix} followed by a
 #'       unique module number. The "grey" module is always 0.}
 #'       \item{\code{ME}}{numeric; module eigenfeature values. One per sample x
@@ -47,7 +38,7 @@
 #'     }
 #' }
 #'
-#' @importFrom MSnbase exprs pData fData `fData<-` `pData<-` featureNames
+#' @importFrom Biobase exprs pData fData
 #' @importFrom WGCNA pickSoftThreshold adjacency TOMsimilarity labels2colors
 #'   plotDendroAndColors moduleEigengenes mergeCloseModules standardColors bicor
 #' @importFrom stats hclust as.dist cor
@@ -84,9 +75,10 @@
 run_WGCNA <- function(object,
                       power = 1:20,
                       RsquaredCut = 0.90,
-                      module_prefix = "", # "P", "M", "T"
-                      merge_modules)
+                      module_prefix = "") # "P", "M", "T"
 {
+  on.exit(invisible(gc()))
+
   # Transpose for WGCNA
   datExpr <- t(exprs(object))
 
@@ -99,7 +91,7 @@ run_WGCNA <- function(object,
 
   # Choose soft-thresholding power
   if (length(power) > 1) {
-    message("Choosing soft-thresholding power ----")
+    message("Choosing soft-thresholding power...")
     # Choosing the soft-thresholding power
     sft <- pickSoftThreshold(data = datExpr,
                              powerVector = power,
@@ -115,13 +107,13 @@ run_WGCNA <- function(object,
     cex1 <- 0.9
 
     plot(sft$fitIndices[, 1],
-         -sign(sft$fitIndices[, 3])*sft$fitIndices[, 2],
+         -sign(sft$fitIndices[, 3]) * sft$fitIndices[, 2],
          xlab = "Soft Threshold (power)",
          ylab = "Scale Free Topology Model Fit, signed R^2",
          type = "n",
          main = "Scale independence")
     text(sft$fitIndices[, 1],
-         -sign(sft$fitIndices[, 3])*sft$fitIndices[, 2],
+         -sign(sft$fitIndices[, 3]) * sft$fitIndices[, 2],
          labels = power, cex = cex1, col = "red")
     abline(h = 0.90, col = "red")
 
@@ -148,7 +140,7 @@ run_WGCNA <- function(object,
     message(sprintf(msg, power))
   }
 
-  message("Calculating adjacency and Topological Overlap matrices ----")
+  message("Constructing adjacency matrix...")
   ## Adjacency matrix
   adjacency <- adjacency(datExpr = datExpr,
                          power = power,
@@ -156,9 +148,8 @@ run_WGCNA <- function(object,
                          corFnc = bicor,
                          corOptions = list(use = "pairwise.complete.obs"))
 
-  # Topological Overlap Matrix (TOM) and dissimilarity matrix
-  TOM <- TOMsimilarity(adjMat = adjacency, TOMType = "unsigned")
-  dissTOM <- 1 - TOM
+  message("Constructing dissimilarity matrix from topological overlap...")
+  dissTOM <- 1 - TOMsimilarity(adjMat = adjacency, TOMType = "unsigned")
 
   # Hierarchical clustering based on dissTOM
   geneTree <- hclust(as.dist(dissTOM), method = "average")
@@ -206,35 +197,19 @@ run_WGCNA <- function(object,
   MEDissThres <- 0.15 # 0.85 correlation
   abline(h = MEDissThres, col = "green")
 
-  # Request user input
-  request_input <- missing(merge_modules)
-  while (request_input) {
-    merge_modules <- readline(
-      prompt = "Merge highly correlated modules? (y/n): "
-    )
-    if (!(merge_modules) %in% c("y", "n")) {
-      message("Invalid input. Try again.")
-    } else {
-      merge_modules <- merge_modules == "y"
-      request_input <- FALSE
-    }
-  }
-
   # Merge highly correlated (1-MEDissThres) modules ----
-  if (merge_modules) {
-    message("Merging highly-correlated modules ----")
-    # Call an automatic merging function
-    merge <- mergeCloseModules(exprData = datExpr,
-                               colors = moduleColors,
-                               MEs = MEs,
-                               cutHeight = MEDissThres,
-                               verbose = 3,
-                               relabel = TRUE)
-    # The merged module colors
-    moduleColors <- merge$colors
-    # Eigengenes of the new merged modules:
-    MEs <- merge$newMEs
-  }
+  message("Merging highly-correlated modules...")
+  # Call an automatic merging function
+  merge <- mergeCloseModules(exprData = datExpr,
+                             colors = moduleColors,
+                             MEs = MEs,
+                             cutHeight = MEDissThres,
+                             verbose = 3,
+                             relabel = TRUE)
+  # The merged module colors
+  moduleColors <- merge$colors
+  # Eigengenes of the new merged modules:
+  MEs <- merge$newMEs
 
   # Update dynamicMods
   color_lvls <- c("grey", standardColors(n = 50))
@@ -250,16 +225,17 @@ run_WGCNA <- function(object,
 
   colnames(MEs) <- color2id[sub("^ME", "", colnames(MEs))]
 
-  ME_long <- pData(object)[, c("bid", "sex", "timepoint")]
+  ME_long <- pData(object)
+  id.vars <- colnames(ME_long)
   setDT(ME_long)
   ME_long <- cbind(ME_long, MEs)
 
-  ME_long <- melt(ME_long, id.vars = c("bid", "sex", "timepoint"),
+  ME_long <- melt(ME_long, id.vars = id.vars,
                   variable.name = "moduleID",
                   value.name = "ME")
   ME_long[, `:=` (moduleNum = as.numeric(
     sub(paste0("^", module_prefix), "", moduleID)
-    ))]
+  ))]
   setorderv(ME_long, cols = "moduleNum")
   ME_long[, `:=` (moduleID = factor(moduleID, levels = unique(moduleID)))]
   setDF(ME_long)

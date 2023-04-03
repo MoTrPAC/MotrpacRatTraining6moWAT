@@ -4,7 +4,12 @@
 \alias{update_GO_names}
 \title{Update Gene Ontology term descriptions}
 \usage{
-update_GO_names(x, version = packageVersion("msigdbr"), capitalize = FALSE)
+update_GO_names(
+  x,
+  version = packageVersion("msigdbr"),
+  capitalize = FALSE,
+  obo_file
+)
 }
 \arguments{
 \item{x}{object of class \code{data.frame} produced by
@@ -18,6 +23,11 @@ Defaults to the current version.}
 description if the first word does not contain a mix of capital and
 lowercase letters. Improves appearance of plots, such as those produced by
 \code{\link{enrichmat}}.}
+
+\item{obo_file}{character; optional path to the OBO file that should be used
+to update Gene Ontology term descriptions. Only provide when the
+appropriate OBO file cannot be extracted from the MSigDB Release Notes (See
+Details).}
 }
 \value{
 Object of class \code{data.frame}. The same as \code{x}, but with
@@ -31,7 +41,8 @@ Update entries in the \code{gs_description} column of
 \details{
 This function assumes that the phrase "GO-basic obo file released
 on" is present in the MSigDB release notes for that version and is followed
-by a date.
+by a date. This date will replace "RELEASE_DATE" in
+"http://release.geneontology.org/RELEASE_DATE/ontology/go-basic.obo".
 }
 \examples{
 x <- msigdbr2(species = "Homo sapiens",

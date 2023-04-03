@@ -21,7 +21,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Zhenxin Hou (\href{https://orcid.org/0000-0002-1301-0799}{ORCID}) (Provided WGCNA-related code.) [contributor]
+  \item Zhenxin Hou (\href{https://orcid.org/0000-0002-1301-0799}{ORCID}) (Provided foundation for run_WGCNA function.) [contributor]
   \item Vladislav Petyuk (\href{https://orcid.org/0000-0003-4076-151X}{ORCID}) (Provided foundation for limma_full function.) [contributor]
 }
 

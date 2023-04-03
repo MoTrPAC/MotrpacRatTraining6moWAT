@@ -3,9 +3,10 @@
 #' @description A convenience wrapper for differential analysis with LIMMA.
 #'   Performs moderated t-tests, F-tests, or linear regression.
 #'
-#' @param object Object of class \code{\link[MSnbase:MSnSet-class]{MSnSet}}. The
-#'   \code{exprs} slot can be either a matrix of log\eqn{_2} relative abundances
-#'   or counts. If the latter, the limma--edgeR pipeline
+#' @param object Object of class
+#'   \code{\link[Biobase:ExpressionSet-class]{ExpressionSet}}. The \code{exprs}
+#'   slot can be either a matrix of log\eqn{_2} relative abundances or counts.
+#'   If the latter, the limma--edgeR pipeline
 #'   (\url{https://doi.org/10.12688/f1000research.9005.3}) will automatically be
 #'   used.
 #' @param model.str character; formulation of the model (e.g. \code{"~ a + b"}).
@@ -30,12 +31,11 @@
 #'   weight of 1). Weights affect the logFC and P.Value columns of the results.
 #' @param block \code{NULL} or character; name of a column in
 #'   \code{pData(object)} specifying a blocking variable. Passed to
-#'   \code{\link[limma]{duplicateCorrelation}}. See
-#'   \href{https://support.bioconductor.org/p/125489/#125602}{When to use
-#'   \code{duplicateCorrelation}}. Section 9.7 "Multi-level Experiments" of the
-#'   \href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA
-#'   User's Guide} explains when to use \code{duplicateCorrelation}. Currently
-#'   ignored if \code{exprs(object)} is a matrix of counts.
+#'   \code{\link[limma]{duplicateCorrelation}}. Section 9.7 "Multi-level
+#'   Experiments" of the LIMMA User's Guide (see
+#'   \code{\link[limma]{limmaUsersGuide}}) explains when to use
+#'   \code{duplicateCorrelation}. Currently ignored if \code{exprs(object)} is a
+#'   matrix of counts.
 #' @param plot logical; whether to generate diagnostic plots. If \code{TRUE},
 #'   generates a barplot of weights applied to each sample and a plot of the
 #'   mean-variance trend using \code{\link[limma]{plotSA}}.
@@ -44,24 +44,23 @@
 #'   See \code{\link[stats]{p.adjust}} for details.
 #' @param adjust.globally logical; should p-values from all contrasts be
 #'   adjusted together using \code{adjust.method}? Set to \code{FALSE} if the
-#'   contrasts being tested are not closely related. See the "Multiple Testing
-#'   Across Contrasts" section of the LIMMA User's Guide (linked in "See Also")
-#'   for more information.
+#'   contrasts being tested are not closely related. See Section 13.3 "Multiple
+#'   Testing Across Contrasts" of the LIMMA User's Guide
+#'   (\code{\link[limma]{limmaUsersGuide}}) for more information.
 #' @param ... additional arguments passed to \code{\link[limma]{plotSA}}.
 #'
 #' @return \code{data.frame}. Output of \code{\link[limma]{topTable}} with
 #'   additional columns \code{feature}, \code{contrast}, and column(s) for the
-#'   standard error (se) of the logFC. All columns from \code{fData} are also
+#'   standard error (SE) of the logFC. All columns from \code{fData} are also
 #'   included.
 #'
-#'
-#' @details An MDS plot (produced by \code{\link[limma]{plotMDS}}) is used to
-#'   determine the appropriate value of \code{var.group}. If samples within
-#'   phenotype groups tend to cluster well and have similar dispersions, the
-#'   default \code{var.group = character(0)} is recommended. If samples within
-#'   phenotype groups tend to cluster well, but different groups are more or
-#'   less dispersed, it may be beneficial to set \code{var.group} to the name of
-#'   the phenotype column. If one or more samples tend to cluster poorly with
+#' @details An MDS plot (\code{\link[limma]{plotMDS}}) is used to determine the
+#'   appropriate value of \code{var.group}. If samples within phenotype groups
+#'   tend to cluster well and have similar dispersions, the default
+#'   \code{var.group = character(0)} is recommended. If samples within phenotype
+#'   groups tend to cluster well, but different groups are more or less
+#'   dispersed, it may be beneficial to set \code{var.group} to the name of the
+#'   phenotype column. If one or more samples tend to cluster poorly with
 #'   samples of the same phenotype, it may be beneficial to weight by sample.
 #'   That is, set \code{var.group} to the name of the column in
 #'   \code{pData(object)} that uniquely identifies each sample. If variation
@@ -77,6 +76,9 @@
 #' @seealso
 #' \href{https://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf}{LIMMA
 #' User's Guide}
+#'
+#' \href{https://support.bioconductor.org/p/125489/#125602}{When to use
+#'   \code{duplicateCorrelation}}
 #'
 #' \href{https://online.stat.psu.edu/stat555/node/1/}{PennState STAT 555 -
 #' Statistical Analysis of Genomics Data}
@@ -117,7 +119,7 @@
 #'   annals of applied statistics, 10}(2), 946--963.
 #'   \url{https://doi.org/10.1214/16-AOAS920}
 #'
-#' @importFrom MSnbase exprs pData
+#' @importFrom Biobase exprs pData
 #' @importFrom stats terms model.matrix p.adjust
 #' @importFrom data.table rbindlist
 #' @importFrom graphics barplot abline
@@ -219,8 +221,7 @@ limma_full <- function(object,
 
     # MDS plot
     if (plot) {
-      lcpm <- cpm(dge$counts, log = TRUE,
-                  prior.count = 0.5)
+      lcpm <- cpm(dge$counts, log = TRUE)
       plotMDS(lcpm, label = dge$samples[[coef.str]])
     }
 

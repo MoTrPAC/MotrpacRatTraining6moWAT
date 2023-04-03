@@ -42,7 +42,8 @@ utils::globalVariables(
     "moduleNum",
     "ME",
     "plotlist",
-    "x"
+    "x",
+    "rank_metric"
   )
 )
 
