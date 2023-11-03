@@ -43,7 +43,20 @@ utils::globalVariables(
     "ME",
     "plotlist",
     "x",
-    "rank_metric"
+    "rank_metric",
+    "group",
+    "lower.CL",
+    "upper.CL",
+    "asymp.LCL",
+    "asymp.UCL",
+    "response_mean",
+    "groups",
+    "pid",
+    "y_position",
+    "color",
+    "group_offset",
+    "age",
+    "group_num"
   )
 )
 
