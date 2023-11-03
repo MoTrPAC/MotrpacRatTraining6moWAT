@@ -60,7 +60,7 @@
 #' @importFrom data.table `:=` `.N` setorderv setDT dcast
 #' @importFrom grid gpar unit grid.circle grid.rect convertUnit
 #' @importFrom utils modifyList head
-#' @importFrom grDevices bmp dev.off jpeg png tiff
+#' @importFrom grDevices bmp dev.off jpeg png tiff pdf
 #' @importFrom latex2exp TeX
 #'
 #' @export enrichmat
@@ -299,9 +299,11 @@ save_heatmap <- function(filename = "enrichmat%03d.png",
                      "tif" = tiff,
                      "tiff" = tiff,
                      "jpg" = jpeg,
-                     "bmp" = bmp)
+                     "bmp" = bmp,
+                     "pdf" = pdf)
 
   default_args <- list(filename = filename,
+                       file = filename,
                        width = width,
                        height = height,
                        units = units,
