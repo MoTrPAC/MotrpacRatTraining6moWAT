@@ -50,7 +50,7 @@ plot_ORA <- function(x,
   x <- x[, head(.SD, n_terms), by = module]
   x[, row_labels := ifelse(nchar(gs_description) > 35 + nchar(pathway) + 5,
                            sprintf("%s...(%s)",
-                                   substr(gs_description, 1, 30),
+                                   cutstr(gs_description, split = " ", n = 35),
                                    pathway),
                            gs_description)]
   x[, row_labels := factor(row_labels, levels = rev(unique(row_labels)))]

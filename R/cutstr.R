@@ -1,6 +1,6 @@
 #' @title Advanced Substrings of a Character Vector
 #'
-#' @param x a length 1 character vector.
+#' @param x a character vector.
 #' @param split a length 1 character vector. Used to split \code{x}.
 #' @param n integer; maximum length of output string.
 #'
@@ -20,11 +20,14 @@
 #' @export cutstr
 
 cutstr <- function(x, split = "", n = Inf) {
-  x <- unlist(strsplit(x, split = split))
+  x <- strsplit(x, split = split)
 
-  keep <- cumsum(nchar(x)) + nchar(split) * (seq_along(x) - 1L) <= n
+  x <- sapply(x, function(.x) {
+    keep <- cumsum(nchar(.x)) + nchar(split) * (seq_along(.x) - 1L) <= n
+    .x <- paste(.x[keep], collapse = split)
 
-  x <- paste(x[keep], collapse = split)
+    return(.x)
+  })
 
   return(x)
 }

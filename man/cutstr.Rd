@@ -7,7 +7,7 @@
 cutstr(x, split = "", n = Inf)
 }
 \arguments{
-\item{x}{a length 1 character vector.}
+\item{x}{a character vector.}
 
 \item{split}{a length 1 character vector. Used to split \code{x}.}
 
