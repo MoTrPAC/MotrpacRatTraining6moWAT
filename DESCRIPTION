@@ -1,8 +1,8 @@
 Package: MotrpacRatTraining6moWAT
 Type: Package
 Title: Helper Functions for the MotrpacRatTraining6moWATData R Package
-Version: 1.0.1
-Date: 2024-01-25
+Version: 1.1.0
+Date: 2024-02-01
 Authors@R: 
     c(
     person(given = "Tyler", family = "Sagendorf", 

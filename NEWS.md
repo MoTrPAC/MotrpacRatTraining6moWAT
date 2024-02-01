@@ -1,3 +1,8 @@
+# MotrpacRatTraining6moWAT 1.1.0
+
+* Added `plot_ORA` and `cutstr` functions. These are used in the `MotrpacRatTraining6moWATData` articles.
+
+
 # MotrpacRatTraining6moWAT 1.0.0
 
 ## Enhancements
