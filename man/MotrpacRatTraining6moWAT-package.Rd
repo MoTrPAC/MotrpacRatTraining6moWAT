@@ -4,15 +4,15 @@
 \name{MotrpacRatTraining6moWAT-package}
 \alias{MotrpacRatTraining6moWAT}
 \alias{MotrpacRatTraining6moWAT-package}
-\title{MotrpacRatTraining6moWAT: Helper Functions for the MotrpacRatTraining6moWATData Package}
+\title{MotrpacRatTraining6moWAT: Helper Functions for the MotrpacRatTraining6moWATData R Package}
 \description{
-A collection of functions for the analysis and visualization of the MoTrPAC PASS1B training study rat white adipose tissue (WAT) data.
+A collection of functions for the analysis and visualization of the MoTrPAC PASS1B training study rat white adipose tissue (WAT) data, contained in the MotrpacRatTraining6moData R package.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/}
-  \item \url{https://github.com/PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT/}
+  \item \url{https://motrpac.github.io/MotrpacRatTraining6moWAT/}
+  \item \url{https://github.com/MoTrPAC/MotrpacRatTraining6moWAT/}
 }
 
 }
