@@ -7,9 +7,10 @@ A collection of functions for the analysis and visualization of the
 MoTrPAC PASS1B white adipose tissue (WAT) data as provided in the
 <a href="https://motrpac.github.io/MotrpacRatTraining6moData/index.html" target="_blank">MotrpacRatTraining6moData</a>
 package. This package was built specifically to generate the
-MotrpacRatTraining6moWATData package, so much of it is tailored only for
-use with those datasets, though users may find some of the functionality
-contained herein to be useful in other projects:
+<a href="https://motrpac.github.io/MotrpacRatTraining6moWATData/index.html" target="_blank">MotrpacRatTraining6moWATData</a>
+package, so much of it is tailored only for use with those datasets,
+though users may find some of the functionality contained herein to be
+useful in other projects:
 
 - Differential analysis (DA) with the
   <a href="https://bioconductor.org/packages/release/bioc/html/limma.html" target="_blank">limma</a>
@@ -30,10 +31,10 @@ contained herein to be useful in other projects:
 Install this package with `devtools`:
 
 ``` r
-if (!require("devtools", quietly = TRUE)) {
+if (!require("devtools", quietly = TRUE))
   install.packages("devtools")
-}
-devtools::install_github("PNNL-Comp-Mass-Spec/MotrpacRatTraining6moWAT")
+
+devtools::install_github("MoTrPAC/MotrpacRatTraining6moWAT")
 ```
 
 # Preprint
