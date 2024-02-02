@@ -3,6 +3,15 @@
 
 # MotrpacRatTraining6moWAT
 
+<!-- badges: start -->
+
+![R package
+version](https://img.shields.io/github/r-package/v/MoTrPAC/MotrpacRatTraining6moWAT?label=R%20package)
+![Last
+commit](https://img.shields.io/github/last-commit/MoTrPAC/MotrpacRatTraining6moWAT/master)
+
+<!-- badges: end -->
+
 A collection of functions for the analysis and visualization of the
 MoTrPAC PASS1B white adipose tissue (WAT) data as provided in the
 <a href="https://motrpac.github.io/MotrpacRatTraining6moData/index.html" target="_blank">MotrpacRatTraining6moData</a>
