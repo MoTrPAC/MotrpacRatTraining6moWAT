@@ -1,7 +1,7 @@
 Package: MotrpacRatTraining6moWAT
 Type: Package
 Title: Helper Functions for the MotrpacRatTraining6moWATData R Package
-Version: 1.1.0
+Version: 1.0.0
 Date: 2024-02-01
 Authors@R: 
     c(
