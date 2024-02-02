@@ -2,8 +2,8 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2023-04-03T22:34Z
+last_built: 2024-02-02T00:33Z
 urls:
-  reference: https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference
-  article: https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/articles
+  reference: https://motrpac.github.io/MotrpacRatTraining6moWAT/reference
+  article: https://motrpac.github.io/MotrpacRatTraining6moWAT/articles
 

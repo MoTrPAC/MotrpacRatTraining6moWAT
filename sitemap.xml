@@ -1,54 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/404.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/404.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/LICENSE-text.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/LICENSE.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/authors.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/authors.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/index.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/index.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/MotrpacRatTraining6moWAT-package.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/news/index.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/enrichmat.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/MotrpacRatTraining6moWAT-package.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/fgsea2.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/cutstr.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/fora2.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/enrichmat.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/index.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/fgsea2.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/label_signif.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/fora2.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/limma_full.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/ggplotMDS.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/msigdbr2.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/range_extend.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/label_signif.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/rank_genes.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/limma_full.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/run_WGCNA.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/msigdbr2.html</loc>
   </url>
   <url>
-    <loc>https://pnnl-comp-mass-spec.github.io/MotrpacRatTraining6moWAT/reference/update_GO_names.html</loc>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/plot_ORA.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/plot_baseline.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/plot_eigenfeature.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/plot_pre_post.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/plot_volcano.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/range_extend.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/rank_genes.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/run_WGCNA.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/theme_pub.html</loc>
+  </url>
+  <url>
+    <loc>https://motrpac.github.io/MotrpacRatTraining6moWAT/reference/update_GO_names.html</loc>
   </url>
 </urlset>
