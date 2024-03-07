@@ -1,8 +1,8 @@
 Package: MotrpacRatTraining6moWAT
 Type: Package
 Title: Helper Functions for the MotrpacRatTraining6moWATData R Package
-Version: 1.0.0
-Date: 2024-02-01
+Version: 1.0.1
+Date: 2024-03-07
 Authors@R: 
     c(
     person(given = "Tyler", family = "Sagendorf", 
@@ -56,7 +56,7 @@ Imports:
     tools,
     utils,
     WGCNA
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 URL: 
     https://motrpac.github.io/MotrpacRatTraining6moWAT/, 

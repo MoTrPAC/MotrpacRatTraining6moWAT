@@ -195,7 +195,8 @@ enrichmat <- function(x,
   lt_args <- list(
     title = padj_legend_title,
     at = 1:2,
-    labels = latex2exp::TeX(c("$< 0.05$", "$\\geq 0.05$")),
+    labels = latex2exp::TeX(sprintf(c("$< %g$",
+                                      "$\\geq %g$"), padj_cutoff)),
     legend_gp = gpar(fill = c(padj_fill, "white")),
     grid_height = heatmap_args$heatmap_legend_param$grid_width,
     grid_width = heatmap_args$heatmap_legend_param$grid_width,
@@ -258,7 +259,7 @@ layer_fun <- function(j, i, x, y, w, h, f)
     r = pindex(rmat, i, j) / 2 * cell_size,
     gp = gpar(col = ifelse(pindex(padj_mat, i, j) < padj_cutoff,
                            "black", NA),
-                           fill = col_fun(pindex(NES_mat, i, j))
+              fill = col_fun(pindex(NES_mat, i, j))
     ))
 }
 
